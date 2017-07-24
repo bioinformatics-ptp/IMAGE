@@ -1,551 +1,587 @@
 {
-   "ontology library" : [
+   "further_details_iri" : "https://github.com/bioinformatics-ptp/IMAGE-metadata/blob/master/README.md",
+   "description" : "Validation rules for the IMAGE project.",
+   "name" : "IMAGE sample metadata rules",
+   "rule_groups" : [
       {
-         "Required" : "mandatory",
-         "Example" : "NCBI Taxonomy",
-         "Type" : "text",
-         "Multiple" : "no",
-         "Column name" : "library name"
-      },
-      {
-         "Column name" : "library URI",
-         "Multiple" : "no",
-         "Type" : "uri",
-         "Example" : "https://www.ebi.ac.uk/ols/ontologies/ncbitaxon",
-         "Required" : "mandatory"
-      },
-      {
-         "Required" : "recommended",
-         "Column name" : "library version",
-         "Multiple" : "no",
-         "Type" : "text"
-      }
-   ],
-   "sample" : [
-      {
-         "Multiple" : "no",
-         "Column name" : "study id",
-         "Type" : "text",
-         "Description" : "must be one of the values used in the study id column in the study sheet",
-         "Required" : "mandatory",
-         "Example" : "example IMAGE study"
-      },
-      {
-         "Valid values" : "SAMEAXXXXXXX",
-         "Required" : "mandatory",
-         "Type" : "text",
-         "Comment" : "The BioSample ID could be empty before submitting BioSample. After the submission, the returned BioSample ID MUST be filled",
-         "Multiple" : "no",
-         "Column name" : "BioSample id"
-      },
-      {
-         "Required" : "mandatory",
-         "Example" : "Siems_0722_393449",
-         "Type" : "text",
-         "Multiple" : "no",
-         "Column name" : "source sample id"
-      },
-      {
-         "Description" : "the name of the source of genebank",
-         "Required" : "mandatory",
-         "Example" : "CyroWEB DE, French system ",
-         "Type" : "text",
-         "Multiple" : "no",
-         "Column name" : "source name"
-      },
-      {
-         "Column name" : "source version",
-         "Comment" : "Record at the month level, if no month available, recorded as Jan of the year",
-         "Multiple" : "no",
-         "Type" : "date",
-         "Example" : "2017-04",
-         "Valid units" : "YYYY-MM",
-         "Required" : "mandatory"
-      },
-      {
-         "Required" : "mandatory",
-         "Type" : "text",
-         "Column name" : "animal BioSample id",
-         "Multiple" : "no"
-      },
-      {
-         "Required" : "mandatory",
-         "Example" : "ANIMAL:::ID:::132713",
-         "Multiple" : "no",
-         "Column name" : "animal source id",
-         "Type" : "text"
-      },
-      {
-         "Required" : "mandatory",
-         "Example" : "OAR_RI_AF1_AA",
-         "Multiple" : "no",
-         "Column name" : "name",
-         "Type" : "text"
-      },
-      {
-         "Type" : "text",
-         "Multiple" : "no",
-         "Column name" : "description",
-         "Required" : "recommended",
-         "Example" : "Chianina"
-      },
-      {
-         "Multiple" : "no",
-         "Column name" : "material",
-         "Type" : "limited value",
-         "Required" : "mandatory",
-         "Valid ontology terms" : [
-            "OBI_0001479",
-            "OBI_0001468",
-            "OBI_0302716",
-            "OBI_0001876",
-            "CLO_0000031"
+         "rules" : [
+            {
+               "example" : "NCBI Taxonomy",
+               "type" : "text",
+               "mandatory" : "mandatory",
+               "name" : "library name"
+            },
+            {
+               "type" : "uri",
+               "example" : "https://www.ebi.ac.uk/ols/ontologies/ncbitaxon",
+               "mandatory" : "mandatory",
+               "name" : "library URI"
+            },
+            {
+               "name" : "library version",
+               "mandatory" : "recommended",
+               "type" : "text"
+            }
          ],
-         "Valid values" : [
-            "specimen from organism",
-            "cell specimen",
-            "pool of specimens",
-            "cell culture",
-            "cell line"
+         "name" : "ontology library"
+      },
+      {
+         "name" : "study",
+         "rules" : [
+            {
+               "valid_values" : [
+                  "IMAGE"
+               ],
+               "name" : "project",
+               "description" : "state it is an IMAGE project",
+               "example" : "IMAGE",
+               "type" : "text",
+               "mandatory" : "mandatory"
+            },
+            {
+               "description" : "identify the study",
+               "name" : "study id",
+               "mandatory" : "mandatory",
+               "example" : "example IMAGE study",
+               "type" : "text"
+            },
+            {
+               "type" : "text",
+               "example" : "It is a fake study which collects pig, sheep, cows sample from 12 countries all over the europe to see which country has the best meat",
+               "mandatory" : "recommended",
+               "name" : "study description",
+               "description" : "brief introduction of study, could include but not limited to the purpose of the study, experiment design etc"
+            },
+            {
+               "name" : "researcher last name",
+               "description" : "the last names of the author list of the study which is separated by ;",
+               "type" : "text",
+               "example" : "Harrison; Caprera",
+               "allow_multiple" : 1,
+               "mandatory" : "mandatory"
+            },
+            {
+               "example" : "Peter; Andrea",
+               "type" : "text",
+               "allow_multiple" : 1,
+               "mandatory" : "mandatory",
+               "name" : "researcher first name",
+               "description" : "the first names of the author list of the study which is separated by ;"
+            },
+            {
+               "mandatory" : "mandatory",
+               "allow_multiple" : 1,
+               "type" : "text",
+               "example" : "peter@ebi.ac.uk, 0044-(0)1223492589; andrea.caprera@ptp.it",
+               "description" : "the contact emails of the researchers, separated by ; and should have the same length as the name list",
+               "name" : "researcher contact"
+            },
+            {
+               "name" : "researcher affiliation",
+               "description" : "the affiliation list of researchers, each affiliation is represented by numbers. One research can have multiple affiliations which is separated by ,",
+               "example" : "1;2",
+               "type" : "text",
+               "allow_multiple" : 1,
+               "mandatory" : "mandatory"
+            },
+            {
+               "name" : "Affiliation name",
+               "type" : "text",
+               "example" : "1. EMBL EBI; 2. PTP",
+               "mandatory" : "mandatory",
+               "allow_multiple" : 1
+            },
+            {
+               "name" : "Affiliation address",
+               "allow_multiple" : 1,
+               "mandatory" : "recommended",
+               "type" : "text",
+               "example" : "1. European Bioinformatics Institute, Wellcome Trust Genome Campus, CB10 1SD, UK; "
+            },
+            {
+               "example" : "1. www.ebi.ac.uk;",
+               "type" : "text",
+               "allow_multiple" : 1,
+               "mandatory" : "optional",
+               "name" : "Affiliation uri"
+            },
+            {
+               "allow_multiple" : 1,
+               "mandatory" : "optional",
+               "type" : "text",
+               "example" : "1. United Kingdom; 2. Italy",
+               "description" : "the country where the affiliation is based, the controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary",
+               "name" : "Affiliation country"
+            },
+            {
+               "type" : "limited values",
+               "example" : "1. curator;  2. submitter",
+               "mandatory" : "mandatory",
+               "allow_multiple" : 1,
+               "name" : "Affiliation Role",
+               "valid_terms" : [
+                  {
+                     "ontology_name" : "EFO",
+                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0002012"
+                  }
+               ]
+            },
+            {
+               "name" : "publication PUBMED",
+               "type" : "integers",
+               "example" : "1234567890",
+               "mandatory" : "optional"
+            },
+            {
+               "name" : "publication DOI",
+               "mandatory" : "optional",
+               "type" : "valid doi",
+               "example" : "10.1111/age.12295"
+            }
          ]
       },
       {
-         "Multiple" : "no",
-         "Column name" : "protocol",
-         "Type" : "uri",
-         "Required" : "mandatory",
-         "Description" : "A link to the protocol used to collect this sample",
-         "Example" : "ftp://ftp.faang.ebi.ac.uk/ftp/protocols/samples/WUR_SOP_animal_sampling_20160405.pdf"
-      },
-      {
-         "Required" : "recommended",
-         "Description" : "Email address or website to contact to obtain the samples. Use the contact details of the registrant.",
-         "Multiple" : "yes",
-         "Column name" : "contact",
-         "Type" : "uri"
-      },
-      {
-         "Example" : "1992-01-17",
-         "Valid units" : [
-            "YYYY-MM-DD",
-            "YYYY-MM",
-            "YYYY"
+         "rules" : [
+            {
+               "name" : "study id",
+               "description" : "must be one of the values used in the study id column in the study sheet",
+               "type" : "text",
+               "example" : "example IMAGE study",
+               "mandatory" : "mandatory"
+            },
+            {
+               "type" : "text",
+               "mandatory" : "mandatory",
+               "valid_values" : [
+                  "SAMEAXXXXXXX"
+               ],
+               "comment" : "The BioSample ID could be empty before submitting BioSample. After the submission, the returned BioSample ID MUST be filled",
+               "name" : "BioSample id"
+            },
+            {
+               "name" : "source sample id",
+               "mandatory" : "mandatory",
+               "type" : "text",
+               "example" : "Siems_0722_393449"
+            },
+            {
+               "type" : "text",
+               "example" : "CyroWEB DE, French system ",
+               "mandatory" : "mandatory",
+               "name" : "source name",
+               "description" : "the name of the source of genebank"
+            },
+            {
+               "type" : "date",
+               "example" : "2017-04",
+               "valid_units" : [
+                  "YYYY-MM"
+               ],
+               "mandatory" : "mandatory",
+               "comment" : "Record at the month level, if no month available, recorded as Jan of the year",
+               "name" : "source version"
+            },
+            {
+               "name" : "animal BioSample id",
+               "mandatory" : "mandatory",
+               "type" : "text"
+            },
+            {
+               "name" : "animal source id",
+               "mandatory" : "mandatory",
+               "example" : "ANIMAL:::ID:::132713",
+               "type" : "text"
+            },
+            {
+               "mandatory" : "mandatory",
+               "type" : "text",
+               "example" : "OAR_RI_AF1_AA",
+               "name" : "name"
+            },
+            {
+               "name" : "description",
+               "example" : "Chianina",
+               "type" : "text",
+               "mandatory" : "recommended"
+            },
+            {
+               "mandatory" : "mandatory",
+               "type" : "limited value",
+               "valid_terms" : [
+                  {
+                     "term_iri" : "http://purl.obolibrary.org/obo/OBI_0001479",
+                     "allow_descendants" : 0,
+                     "ontology_name" : "OBI"
+                  },
+                  {
+                     "term_iri" : "http://purl.obolibrary.org/obo/OBI_0001468",
+                     "ontology_name" : "OBI",
+                     "allow_descendants" : 0
+                  },
+                  {
+                     "ontology_name" : "OBI",
+                     "allow_descendants" : 0,
+                     "term_iri" : "http://purl.obolibrary.org/obo/OBI_0302716"
+                  },
+                  {
+                     "term_iri" : "http://purl.obolibrary.org/obo/OBI_0001876",
+                     "allow_descendants" : 0,
+                     "ontology_name" : "OBI"
+                  },
+                  {
+                     "term_iri" : "http://purl.obolibrary.org/obo/CLO_0000031",
+                     "allow_descendants" : 0,
+                     "ontology_name" : "CLO"
+                  }
+               ],
+               "name" : "material",
+               "valid_values" : [
+                  "specimen from organism",
+                  "cell specimen",
+                  "pool of specimens",
+                  "cell culture",
+                  "cell line"
+               ]
+            },
+            {
+               "example" : "ftp://ftp.faang.ebi.ac.uk/ftp/protocols/samples/WUR_SOP_animal_sampling_20160405.pdf",
+               "type" : "uri",
+               "mandatory" : "mandatory",
+               "name" : "protocol",
+               "description" : "A link to the protocol used to collect this sample"
+            },
+            {
+               "allow_multiple" : 1,
+               "mandatory" : "recommended",
+               "type" : "uri",
+               "description" : "Email address or website to contact to obtain the samples. Use the contact details of the registrant.",
+               "name" : "contact"
+            },
+            {
+               "description" : "Date when the sample was collected",
+               "name" : "collection date",
+               "valid_units" : [
+                  "YYYY-MM-DD",
+                  "YYYY-MM",
+                  "YYYY"
+               ],
+               "mandatory" : "mandatory",
+               "example" : "1992-01-17",
+               "type" : "date"
+            },
+            {
+               "name" : "collection place latitude",
+               "example" : "47.86591",
+               "type" : "double",
+               "mandatory" : "recommended",
+               "valid_units" : [
+                  "decimal degrees"
+               ]
+            },
+            {
+               "name" : "collection place longitude",
+               "example" : "12.19115",
+               "type" : "double",
+               "valid_units" : [
+                  "decimal degrees"
+               ],
+               "mandatory" : "recommended"
+            },
+            {
+               "name" : "collection place",
+               "example" : "Germany",
+               "type" : "text",
+               "mandatory" : "mandatory"
+            },
+            {
+               "name" : "collection condition",
+               "example" : "10ml blood from leg was collected",
+               "type" : "text",
+               "mandatory" : "optional"
+            },
+            {
+               "name" : "storage date",
+               "mandatory" : "recommended",
+               "valid_units" : [
+                  "YYYY-MM-DD",
+                  "YYYY-MM",
+                  "YYYY"
+               ],
+               "example" : "1992-01-17",
+               "type" : "date"
+            },
+            {
+               "type" : "date",
+               "mandatory" : "recommended",
+               "valid_units" : [
+                  "YYYY-MM-DD",
+                  "YYYY-MM",
+                  "YYYY"
+               ],
+               "name" : "submission date"
+            },
+            {
+               "comment" : "is this same as tissue? Ontology for part of organism specimen from, UBERON is preferred to BTO",
+               "valid_terms" : [
+                  {
+                     "term_iri" : "http://purl.obolibrary.org/obo/UBERON_0001062",
+                     "ontology_name" : "UBERON"
+                  },
+                  {
+                     "ontology_name" : "BTO",
+                     "term_iri" : "http://purl.obolibrary.org/obo/BTO_0000042"
+                  }
+               ],
+               "name" : "organism part",
+               "mandatory" : "mandatory",
+               "type" : "text"
+            },
+            {
+               "type" : "text",
+               "mandatory" : "recommended",
+               "name" : "developmental stage",
+               "valid_terms" : [
+                  {
+                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0000399",
+                     "ontology_name" : "EFO"
+                  }
+               ]
+            }
          ],
-         "Description" : "Date when the sample was collected",
-         "Required" : "mandatory",
-         "Column name" : "collection date",
-         "Multiple" : "no",
-         "Type" : "date"
+         "name" : "sample"
       },
       {
-         "Required" : "recommended",
-         "Valid units" : "decimal degrees",
-         "Example" : "47.86591",
-         "Type" : "double",
-         "Multiple" : "no",
-         "Column name" : "collection place latitude"
-      },
-      {
-         "Type" : "double",
-         "Multiple" : "no",
-         "Column name" : "collection place longitude",
-         "Valid units" : "decimal degrees",
-         "Required" : "recommended",
-         "Example" : "12.19115"
-      },
-      {
-         "Required" : "mandatory",
-         "Example" : "Germany",
-         "Type" : "text",
-         "Multiple" : "no",
-         "Column name" : "collection place"
-      },
-      {
-         "Column name" : "collection condition",
-         "Multiple" : "no",
-         "Type" : "text",
-         "Example" : "10ml blood from leg was collected",
-         "Required" : "optional"
-      },
-      {
-         "Valid units" : [
-            "YYYY-MM-DD",
-            "YYYY-MM",
-            "YYYY"
+         "rules" : [
+            {
+               "type" : "text",
+               "mandatory" : "mandatory",
+               "name" : "BioSample ID",
+               "valid_values" : [
+                  "SAMEAXXXXXXX"
+               ],
+               "comment" : "The BioSample ID could be empty before submitting BioSample. After the submission, the returned BioSample ID MUST be filled"
+            },
+            {
+               "name" : "name",
+               "mandatory" : "mandatory",
+               "type" : "text",
+               "example" : "OAR_RI_AF1"
+            },
+            {
+               "mandatory" : "mandatory",
+               "example" : "ANIMAL:::ID:::132713",
+               "type" : "text",
+               "name" : "source animal id"
+            },
+            {
+               "mandatory" : "mandatory",
+               "example" : "CyroWEB DE, French system ",
+               "type" : "text",
+               "description" : "the name of the source of genebank",
+               "name" : "source name"
+            },
+            {
+               "name" : "source version",
+               "comment" : "Record at the month level, if no month available, recorded as Jan of the year",
+               "valid_units" : [
+                  "YYYY-MM"
+               ],
+               "mandatory" : "mandatory",
+               "type" : "date",
+               "example" : "2017-04"
+            },
+            {
+               "name" : "father BioSampleID",
+               "valid_values" : [
+                  "SAMEAXXXXXXX"
+               ],
+               "type" : "text",
+               "mandatory" : "optional"
+            },
+            {
+               "name" : "father source id",
+               "mandatory" : "optional",
+               "example" : "ANIMAL:::ID:::541008",
+               "type" : "text"
+            },
+            {
+               "valid_values" : [
+                  "SAMEAXXXXXXX"
+               ],
+               "name" : "mother BioSampleID",
+               "type" : "text",
+               "mandatory" : "optional"
+            },
+            {
+               "name" : "mother source id",
+               "type" : "text",
+               "example" : "ANIMAL:::ID:::507050",
+               "mandatory" : "optional"
+            },
+            {
+               "name" : "breed",
+               "description" : "The breed of the animal, the value of which matches to the breed origin column in the breed sheet",
+               "comment" : "the species of the animal can be retrieved from breed",
+               "example" : "Bunte Bentheimer",
+               "type" : "text",
+               "mandatory" : "mandatory"
+            },
+            {
+               "type" : "date",
+               "example" : "1990-07-17",
+               "mandatory" : "recommended",
+               "valid_units" : [
+                  "YYYY-MM-DD",
+                  "YYYY-MM",
+                  "YYYY"
+               ],
+               "name" : "birth date",
+               "description" : "The date when the animal was born",
+               "comment" : "Fill in the date as accurate as possible, at least fill in the year"
+            },
+            {
+               "name" : "birth status",
+               "description" : "The status of the birth, could be premature birth for 2 weeks, normal",
+               "type" : "text",
+               "example" : "normal",
+               "mandatory" : "optional"
+            },
+            {
+               "valid_libraries" : [
+                  "PATO"
+               ],
+               "valid_values" : [
+                  "male",
+                  "female"
+               ],
+               "name" : "sex",
+               "type" : "limited values",
+               "example" : "male (PATO:0000384)",
+               "comment" : "could split into two columns",
+               "valid_terms" : [
+                  {
+                     "term_iri" : "http://purl.obolibrary.org/obo/PATO_0000384",
+                     "allow_descendants" : 0,
+                     "ontology_name" : "PATO"
+                  },
+                  {
+                     "term_iri" : "http://purl.obolibrary.org/obo/PATO_0000383",
+                     "allow_descendants" : 0,
+                     "ontology_name" : "PATO"
+                  }
+               ],
+               "mandatory" : "mandatory"
+            },
+            {
+               "name" : "submission date",
+               "type" : "date",
+               "example" : "2014-01-30",
+               "mandatory" : "recommended",
+               "valid_units" : [
+                  "YYYY-MM-DD",
+                  "YYYY-MM",
+                  "YYYY"
+               ]
+            },
+            {
+               "name" : "farm latitude",
+               "example" : "47.86591",
+               "type" : "double",
+               "mandatory" : "recommended",
+               "valid_units" : [
+                  "decimal degrees"
+               ]
+            },
+            {
+               "name" : "farm longitude",
+               "valid_units" : [
+                  "decimal degrees"
+               ],
+               "mandatory" : "recommended",
+               "type" : "double",
+               "example" : "12.19115"
+            },
+            {
+               "description" : "the place of the farm, town/city could be optional, country must be there",
+               "name" : "farm place",
+               "mandatory" : "mandatory",
+               "type" : "text",
+               "example" : "Berlin Germany"
+            },
+            {
+               "name" : "reproduction place",
+               "mandatory" : "optional",
+               "example" : "Germany",
+               "type" : "text"
+            },
+            {
+               "type" : "uri",
+               "allow_multiple" : 1,
+               "mandatory" : "optional",
+               "name" : "photo"
+            }
          ],
-         "Required" : "recommended",
-         "Example" : "1992-01-17",
-         "Type" : "date",
-         "Multiple" : "no",
-         "Column name" : "storage date"
+         "name" : "animal"
       },
       {
-         "Type" : "date",
-         "Multiple" : "no",
-         "Column name" : "submission date",
-         "Required" : "recommended",
-         "Valid units" : [
-            "YYYY-MM-DD",
-            "YYYY-MM",
-            "YYYY"
+         "name" : "breed",
+         "rules" : [
+            {
+               "mandatory" : "mandatory",
+               "type" : "text",
+               "example" : "Bunte Bentheimer",
+               "name" : "breed origin"
+            },
+            {
+               "name" : "mapped breed",
+               "mandatory" : "recommended",
+               "type" : "text",
+               "example" : "Bentheim Black Pied"
+            },
+            {
+               "name" : "mapped breed ontology library",
+               "type" : "text",
+               "example" : "LBO",
+               "mandatory" : "recommended"
+            },
+            {
+               "name" : "mapped breed accession",
+               "mandatory" : "recommended",
+               "type" : "accession",
+               "example" : "LBO_0000347"
+            },
+            {
+               "mandatory" : "mandatory",
+               "example" : "Germany",
+               "type" : "text",
+               "description" : "INSDC list",
+               "name" : "country"
+            },
+            {
+               "name" : "photo",
+               "mandatory" : "recommended",
+               "allow_multiple" : 1,
+               "type" : "uri"
+            },
+            {
+               "type" : "text",
+               "example" : "Sus scrofa",
+               "mandatory" : "mandatory",
+               "name" : "species"
+            },
+            {
+               "example" : "NCBI Taxonomy",
+               "type" : "text",
+               "mandatory" : "mandatory",
+               "name" : "species ontology library"
+            },
+            {
+               "name" : "species ontology accession",
+               "mandatory" : "mandatory",
+               "type" : "accession",
+               "example" : "NCBITaxon_9823"
+            }
          ]
-      },
-      {
-         "Type" : "text",
-         "Multiple" : "no",
-         "Comment" : "is this same as tissue? Ontology for part of organism specimen from, UBERON is preferred to BTO",
-         "Column name" : "organism part",
-         "Valid ontology terms" : [
-            "UBERON_0001062(include descendants)",
-            "BTO_0000042(include descendants)"
-         ],
-         "Required" : "mandatory"
-      },
-      {
-         "Valid ontology terms" : "EFO_0000399(include descendants)",
-         "Required" : "recommended",
-         "Column name" : "developmental stage",
-         "Multiple" : "no",
-         "Type" : "text"
-      }
-   ],
-   "animal" : [
-      {
-         "Required" : "mandatory",
-         "Valid values" : "SAMEAXXXXXXX",
-         "Column name" : "BioSample ID",
-         "Multiple" : "no",
-         "Comment" : "The BioSample ID could be empty before submitting BioSample. After the submission, the returned BioSample ID MUST be filled",
-         "Type" : "text"
-      },
-      {
-         "Column name" : "name",
-         "Multiple" : "no",
-         "Type" : "text",
-         "Example" : "OAR_RI_AF1",
-         "Required" : "mandatory"
-      },
-      {
-         "Example" : "ANIMAL:::ID:::132713",
-         "Required" : "mandatory",
-         "Type" : "text",
-         "Column name" : "source animal id",
-         "Multiple" : "no"
-      },
-      {
-         "Example" : "CyroWEB DE, French system ",
-         "Description" : "the name of the source of genebank",
-         "Required" : "mandatory",
-         "Type" : "text",
-         "Column name" : "source name",
-         "Multiple" : "no"
-      },
-      {
-         "Example" : "2017-04",
-         "Valid units" : "YYYY-MM",
-         "Required" : "mandatory",
-         "Type" : "date",
-         "Column name" : "source version",
-         "Comment" : "Record at the month level, if no month available, recorded as Jan of the year",
-         "Multiple" : "no"
-      },
-      {
-         "Valid values" : "SAMEAXXXXXXX",
-         "Required" : "optional",
-         "Multiple" : "no",
-         "Column name" : "father BioSampleID",
-         "Type" : "text"
-      },
-      {
-         "Required" : "optional",
-         "Example" : "ANIMAL:::ID:::541008",
-         "Multiple" : "no",
-         "Column name" : "father source id",
-         "Type" : "text"
-      },
-      {
-         "Type" : "text",
-         "Multiple" : "no",
-         "Column name" : "mother BioSampleID",
-         "Valid values" : "SAMEAXXXXXXX",
-         "Required" : "optional"
-      },
-      {
-         "Example" : "ANIMAL:::ID:::507050",
-         "Required" : "optional",
-         "Type" : "text",
-         "Column name" : "mother source id",
-         "Multiple" : "no"
-      },
-      {
-         "Example" : "Bunte Bentheimer",
-         "Description" : "The breed of the animal, the value of which matches to the breed origin column in the breed sheet",
-         "Required" : "mandatory",
-         "Type" : "text",
-         "Column name" : "breed",
-         "Comment" : "the species of the animal can be retrieved from breed",
-         "Multiple" : "no"
-      },
-      {
-         "Multiple" : "no",
-         "Required" : "recommended",
-         "Valid units" : [
-            "YYYY-MM-DD",
-            "YYYY-MM",
-            "YYYY"
-         ],
-         "Description" : "The date when the animal was born",
-         "Comment" : "Fill in the date as accurate as possible, at least fill in the year",
-         "Column name" : "birth date",
-         "Type" : "date",
-         "Example" : "1990-07-17"
-      },
-      {
-         "Type" : "text",
-         "Column name" : "birth status",
-         "Multiple" : "no",
-         "Example" : "normal",
-         "Description" : "The status of the birth, could be premature birth for 2 weeks, normal",
-         "Required" : "optional"
-      },
-      {
-         "Valid ontology libraries" : "PATO",
-         "Required" : "mandatory",
-         "Multiple" : "no",
-         "Valid values" : [
-            "male",
-            "female"
-         ],
-         "Valid ontology terms" : [
-            "PATO:0000384",
-            "PATO:0000383"
-         ],
-         "Example" : "male (PATO:0000384)",
-         "Comment" : "could split into two columns",
-         "Column name" : "sex",
-         "Type" : "limited values"
-      },
-      {
-         "Column name" : "submission date",
-         "Multiple" : "no",
-         "Type" : "date",
-         "Example" : "2014-01-30",
-         "Required" : "recommended",
-         "Valid units" : [
-            "YYYY-MM-DD",
-            "YYYY-MM",
-            "YYYY"
-         ]
-      },
-      {
-         "Required" : "recommended",
-         "Valid units" : "decimal degrees",
-         "Example" : "47.86591",
-         "Type" : "double",
-         "Multiple" : "no",
-         "Column name" : "farm latitude"
-      },
-      {
-         "Column name" : "farm longitude",
-         "Multiple" : "no",
-         "Type" : "double",
-         "Example" : "12.19115",
-         "Required" : "recommended",
-         "Valid units" : "decimal degrees"
-      },
-      {
-         "Description" : "the place of the farm, town/city could be optional, country must be there",
-         "Required" : "mandatory",
-         "Example" : "Berlin Germany",
-         "Type" : "text",
-         "Multiple" : "no",
-         "Column name" : "farm place"
-      },
-      {
-         "Multiple" : "no",
-         "Column name" : "reproduction place",
-         "Type" : "text",
-         "Required" : "optional",
-         "Example" : "Germany"
-      },
-      {
-         "Type" : "uri",
-         "Column name" : "photo",
-         "Multiple" : "yes",
-         "Required" : "optional"
-      }
-   ],
-   "study" : [
-      {
-         "Required" : "mandatory",
-         "Description" : "state it is an IMAGE project",
-         "Valid values" : "IMAGE",
-         "Multiple" : "no",
-         "Column name" : "project",
-         "Type" : "text"
-      },
-      {
-         "Description" : "identify the study",
-         "Required" : "mandatory",
-         "Example" : "example IMAGE study",
-         "Type" : "text",
-         "Multiple" : "no",
-         "Column name" : "study id"
-      },
-      {
-         "Multiple" : "no",
-         "Column name" : "study description",
-         "Type" : "text",
-         "Description" : "brief introduction of study, could include but not limited to the purpose of the study, experiment design etc",
-         "Required" : "recommended",
-         "Example" : "It is a fake study which collects pig, sheep, cows sample from 12 countries all over the europe to see which country has the best meat"
-      },
-      {
-         "Example" : "Harrison; Caprera",
-         "Required" : "mandatory",
-         "Description" : "the last names of the author list of the study which is separated by ;",
-         "Type" : "text",
-         "Column name" : "researcher last name",
-         "Multiple" : "yes"
-      },
-      {
-         "Description" : "the first names of the author list of the study which is separated by ;",
-         "Required" : "mandatory",
-         "Example" : "Peter; Andrea",
-         "Type" : "text",
-         "Multiple" : "yes",
-         "Column name" : "researcher first name"
-      },
-      {
-         "Column name" : "researcher contact",
-         "Multiple" : "yes",
-         "Type" : "text",
-         "Example" : "peter@ebi.ac.uk, 0044-(0)1223492589; andrea.caprera@ptp.it",
-         "Required" : "mandatory",
-         "Description" : "the contact emails of the researchers, separated by ; and should have the same length as the name list"
-      },
-      {
-         "Description" : "the affiliation list of researchers, each affiliation is represented by numbers. One research can have multiple affiliations which is separated by ,",
-         "Required" : "mandatory",
-         "Example" : "1;2",
-         "Multiple" : "yes",
-         "Column name" : "researcher affiliation",
-         "Type" : "text"
-      },
-      {
-         "Example" : "1. EMBL EBI; 2. PTP",
-         "Required" : "mandatory",
-         "Column name" : "Affiliation name",
-         "Multiple" : "yes",
-         "Type" : "text"
-      },
-      {
-         "Example" : "1. European Bioinformatics Institute, Wellcome Trust Genome Campus, CB10 1SD, UK; ",
-         "Required" : "recommended",
-         "Type" : "text",
-         "Column name" : "Affiliation address",
-         "Multiple" : "yes"
-      },
-      {
-         "Example" : "1. www.ebi.ac.uk;",
-         "Required" : "optional",
-         "Column name" : "Affiliation uri",
-         "Multiple" : "yes",
-         "Type" : "text"
-      },
-      {
-         "Description" : "the country where the affiliation is based, the controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary",
-         "Required" : "optional",
-         "Example" : "1. United Kingdom; 2. Italy",
-         "Multiple" : "yes",
-         "Column name" : "Affiliation country",
-         "Type" : "text"
-      },
-      {
-         "Required" : "mandatory",
-         "Valid ontology terms" : "descendants of EFO_0002012",
-         "Example" : "1. curator;  2. submitter",
-         "Type" : "limited values",
-         "Multiple" : "yes",
-         "Column name" : "Affiliation Role"
-      },
-      {
-         "Required" : "optional",
-         "Example" : "1234567890",
-         "Type" : "integers",
-         "Multiple" : "no",
-         "Column name" : "publication PUBMED"
-      },
-      {
-         "Multiple" : "no",
-         "Column name" : "publication DOI",
-         "Type" : "valid doi",
-         "Required" : "optional"
-      }
-   ],
-   "breed" : [
-      {
-         "Multiple" : "no",
-         "Column name" : "breed origin",
-         "Type" : "text",
-         "Required" : "mandatory",
-         "Example" : "Bunte Bentheimer"
-      },
-      {
-         "Type" : "text",
-         "Column name" : "mapped breed",
-         "Multiple" : "no",
-         "Example" : "Bentheim Black Pied",
-         "Required" : "recommended"
-      },
-      {
-         "Example" : "LBO",
-         "Required" : "recommended",
-         "Column name" : "mapped breed ontology library",
-         "Multiple" : "no",
-         "Type" : "text"
-      },
-      {
-         "Type" : "accession",
-         "Column name" : "mapped breed accession",
-         "Multiple" : "no",
-         "Example" : "LBO_0000347",
-         "Required" : "recommended"
-      },
-      {
-         "Column name" : "country",
-         "Multiple" : "no",
-         "Type" : "text",
-         "Example" : "Germany",
-         "Required" : "mandatory",
-         "Description" : "INSDC list"
-      },
-      {
-         "Required" : "recommended",
-         "Column name" : "photo",
-         "Multiple" : "yes",
-         "Type" : "uri"
-      },
-      {
-         "Example" : "Sus scrofa",
-         "Required" : "mandatory",
-         "Column name" : "species",
-         "Multiple" : "no",
-         "Type" : "text"
-      },
-      {
-         "Required" : "mandatory",
-         "Example" : "NCBI Taxonomy",
-         "Type" : "text",
-         "Multiple" : "no",
-         "Column name" : "species ontology library"
-      },
-      {
-         "Required" : "mandatory",
-         "Example" : "NCBITaxon_9823",
-         "Type" : "accession",
-         "Multiple" : "no",
-         "Column name" : "species ontology accession"
       }
    ]
 }

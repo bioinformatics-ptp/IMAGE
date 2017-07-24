@@ -33,22 +33,40 @@ while ($line = <TSV>){
 	next if (substr($line,0,1) eq "#"); #skip lines starting with #
 	@arr = split("\t",$line);
 	my %hash;
-	for (my $i=1;$i<scalar @arr;$i++){
-		my $value = $arr[$i];
+	for (my $col=1;$col<scalar @arr;$col++){
+		my $value = $arr[$col];
 		if (length $value>0){ #not empty, only populate the data structure with non-empty values
-			if(lc($headers{$i})=~/^valid/){ #in the columns starting with Valid there may be a list of allowed values separated by ,
+			if(lc($headers{$col})=~/^valid/){ #in the columns starting with Valid there may be a list of allowed values separated by ,
 				#check whether it is a CSV string, if so, separate into array
 				my @tmp = split(",",$value);
-				if (scalar @tmp==1){ #no , found, i.e. single value
-					$hash{$headers{$i}} = $value ;
-				}else{
-					for (my $i=0;$i<scalar @tmp;$i++){
-						$tmp[$i] = trim($tmp[$i]); #could use trim() in modules (e.g. use String::Util qw(trim); or use Text::Trim qw(trim);), but they need to install
+				for (my $i=0;$i<scalar @tmp;$i++){
+					$tmp[$i] = trim($tmp[$i]); #could use trim() in modules (e.g. use String::Util qw(trim); or use Text::Trim qw(trim);), but they need to install
+					if(lc($headers{$col}) eq "valid_terms"){
+						print "$tmp[$i]\t";
+						my %abc;
+						my $tmp = $tmp[$i];
+						$tmp=~s/:/_/;
+						if ($tmp =~/^descendants? of /){#default allow_descendants = 1, see https://github.com/FAANG/validate-metadata/blob/master/lib/Bio/Metadata/Rules/PermittedTerm.pm
+							$tmp = $';
+						}elsif($tmp=~/(\w+_\d+)\s*\(?.+?descendants/){
+							$tmp = $1;
+						}else{
+							$abc{allow_descendants}=0;
+						}
+						print "remove descendants <$tmp>\n";
+						my ($library)=split("_",$tmp);
+						$abc{ontology_name} = $library;
+						$abc{term_iri} = "http://purl.obolibrary.org/obo/$tmp";
+						$tmp[$i]=\%abc;
 					}
-					$hash{$headers{$i}} = \@tmp;
 				}
+				$hash{$headers{$col}} = \@tmp;
+				print "\n";
+			}elsif(lc($headers{$col}) eq "multiple"){
+#				$hash{$headers{$i}} = $value;
+				$hash{allow_multiple}=1 if (lc($value) eq "yes");
 			}else{
-				$hash{$headers{$i}} = $value;
+				$hash{$headers{$col}} = $value;
 			}
 		}
 	}
@@ -57,8 +75,21 @@ while ($line = <TSV>){
 
 die "No data found in the input TSV file, please check the file. The most possible reason is that the line ending is not recognized." if ($line_count == 0);
 
+my %main;
+$main{description}="Validation rules for the IMAGE project.";
+$main{name}="IMAGE sample metadata rules";
+$main{further_details_iri}="https://github.com/bioinformatics-ptp/IMAGE-metadata/blob/master/README.md";
+my @rulesets;
+foreach my $sheet(keys %result){
+	my %tmp;
+	$tmp{name}=$sheet;
+	$tmp{rules}=$result{$sheet};
+	push(@rulesets,\%tmp);
+}
+$main{rule_groups}=\@rulesets;
+
 #convert the data structure into a pretty-formated json
-my $json = to_json(\%result,{pretty=>1});
+my $json = to_json(\%main,{pretty=>1});
 open JSON_OUT,">IMAGE_ruleset.json";
 print JSON_OUT "$json\n";
 close JSON_OUT;
