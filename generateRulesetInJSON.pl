@@ -47,7 +47,7 @@ while ($line = <TSV>){
 						my $tmp = $tmp[$i];
 						$tmp=~s/:/_/;
 						if ($tmp =~/^descendants? of /){#default allow_descendants = 1, see https://github.com/FAANG/validate-metadata/blob/master/lib/Bio/Metadata/Rules/PermittedTerm.pm
-							$abc{include_root}=0;
+							$abc{include_root}=0; #default value is 1
 							$tmp = $';
 						}elsif($tmp=~/(\w+_\d+)\s*\(?.+?descendants/){
 							$tmp = $1;
