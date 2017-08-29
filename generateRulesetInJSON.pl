@@ -13,6 +13,9 @@ unless (scalar @ARGV == 1){
 
 open TSV, "$ARGV[0]" || die "Could not find the specified tsv file $ARGV[0]\n";
 #header line
+my $idx = rindex($ARGV[0],".");
+my $json_file = substr($ARGV[0],0,$idx).".json";
+
 my $line = <TSV>;
 chomp ($line);
 print "The header line is $line\n";
@@ -25,6 +28,7 @@ for (my $i=0;$i<scalar @arr;$i++){
 
 my $line_count = 0;
 my %result;
+$"=">,<";
 while ($line = <TSV>){
 	$line_count++;
 	$line=~s/\"//g; #Excel add "" to the strings when exporting as TSV file
@@ -39,31 +43,38 @@ while ($line = <TSV>){
 			if(lc($headers{$col})=~/^valid/){ #in the columns starting with Valid there may be a list of allowed values separated by ,
 				#check whether it is a CSV string, if so, separate into array
 				my @tmp = split(",",$value);
+#				print "found valid in the line: $line\n<@tmp>\n";
+				next if (scalar @tmp == 1 && $tmp[0] eq "-");
 				for (my $i=0;$i<scalar @tmp;$i++){
 					$tmp[$i] = trim($tmp[$i]); #could use trim() in modules (e.g. use String::Util qw(trim); or use Text::Trim qw(trim);), but they need to install
-					if(lc($headers{$col}) eq "valid_terms"){
-						print "$tmp[$i]\t";
+					if(lc($headers{$col}) eq "valid_terms" || lc($headers{$col}) eq "valid terms"){
+#						print "$tmp[$i]\t";
 						my %abc;
 						my $tmp = $tmp[$i];
 						$tmp=~s/:/_/;
 						if ($tmp =~/^descendants? of /){#default allow_descendants = 1, see https://github.com/FAANG/validate-metadata/blob/master/lib/Bio/Metadata/Rules/PermittedTerm.pm
 							$abc{include_root}=0; #default value is 1
+							$abc{allow_descendants}=1;
 							$tmp = $';
 						}elsif($tmp=~/(\w+_\d+)\s*\(?.+?descendants/){
+							$abc{include_root}=1;
+							$abc{allow_descendants}=1;
 							$tmp = $1;
 						}else{
+							$abc{include_root}=1;
 							$abc{allow_descendants}=0;
 						}
-						print "remove descendants <$tmp>\n";
+#						print "remove descendants <$tmp>\n";
 						my ($library)=split("_",$tmp);
 						$abc{ontology_name} = $library;
+						$abc{term} = $tmp;
 						$abc{term_iri} = "http://purl.obolibrary.org/obo/$tmp";
 						$abc{term_iri} = "http://www.ebi.ac.uk/ols/ontologies/lbo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$tmp" if ($library eq "LBO");
 						$tmp[$i]=\%abc;
 					}
 				}
 				$hash{$headers{$col}} = \@tmp;
-				print "\n";
+#				print "\n";
 			}elsif(lc($headers{$col}) eq "multiple"){
 #				$hash{$headers{$i}} = $value;
 				$hash{allow_multiple}=1 if (lc($value) eq "yes");
@@ -92,7 +103,8 @@ $main{rule_groups}=\@rulesets;
 
 #convert the data structure into a pretty-formated json
 my $json = to_json(\%main,{pretty=>1});
-open JSON_OUT,">IMAGE_ruleset.json";
+print "The converted JSON will be saved in $json_file\n";
+open JSON_OUT,">$json_file";
 print JSON_OUT "$json\n";
 close JSON_OUT;
 
