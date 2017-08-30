@@ -1,56 +1,83 @@
 Rulegroup	Name	Type	Required?	Allow Multiple?	Valid values	Valid units	Valid terms	Example	Description	comment
-standard	Project	text	mandatory	no	"""IMAGE"""	-	-	IMAGE	"All samples are stated to be part of the ""IMAGE"" project"	
-standard	Submission title	text	mandatory	no	-	-	-	German National Sperm Bank	A descriptive title for the submission	
-standard	Submission description	text	recommended	no	-	-	-	"A collection of pig, sheep and cow samples collected to assess quality of meat products"	A brief description of the submission	
-standard	Sample description	text	optional	no	-	-	-	Pig sperm sample from 3 year old duroc	A brief description of the sample	
-standard	Material	ontology_id	mandatory	no	"""Organism"",""Specimen from organism"""	-	"OBI_0100026,OBI_0001479"	Specimen from Organism		
-standard	Person last name	text	mandatory	yes	-	-	-	Harrison; Fan	the last names of the author list of the study which is separated by ;	
-standard	Person initial	text	optional	yes	-	-	-	W		"One person can have multiple initials, make sure to group together as string"
-standard	Person first name	text	recommended	yes	-	-	-	Peter; Jun	the first names of the author list of the study which is separated by ;	
-standard	Person email	uri_value	mandatory	yes	-	-	-	mailto:peter@ebi.ac.uk; mailto:junf@ebi.ac.uk	"the contact emails of the researchers, separated by ; and should have the same length as the name list"	
-standard	Person affiliation	text	mandatory	yes	-	-	-	EMBL-EBI; EMBL-EBI	"the affiliation list of persons. One person can have multiple affiliations which is separated by ,"	"One person can have multiple affilations, make sure to group together as string"
-standard	Person role	text	mandatory	yes	-	-	"descendants of ""EFO_0002012"""	Submitter		
-standard	Organisation name	text	mandatory	yes	-	-	-	EMBL-EBI		
-standard	Organisation address	text	recommended	yes	-	-	-	"European Bioinformatics Institute, Wellcome Trust Genome Campus, CB10 1SD, UK"	the addresses of affiliations	
-standard	Organisation uri	uri_value	optional	yes	-	-	-	www.ebi.ac.uk	the websites of affiliations	
-standard	Organisation country	text	recommended	yes	-	-	-	United Kingdom	"the country where the affiliation is based, the controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary"	
-standard	Organisation role	ontology_id	mandatory	yes	-	-	"descendants of ""EFO_0002012"""	Submitter		
-standard	Availability	uri_value	mandatory	no	-	-	-	mailto:vdc-internal@ebi.ac.uk	"Either a link to a web page giving information on sample availability (who to contact and if the sample is available), or a e-mail address to contact about availability. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal."	
-standard	Publication DOI	doi	optional	no	-	-	-	"""doi://10.1139/o09-005"""		
-standard	Data source name	text	mandatory	no	-	-	-	"""CyroWEB DE"", ""French system"""	the name of the source of genebank	
-standard	Data source version	text	recommended	no	-	-	-	"""2017-04"", ""version 1.1"""		"Record at the month level, if no month available, recorded as Jan of the year"
-organism	conditions: Material:Organism									
-organism	BioSample ID	limited values	mandatory	no	-	-	-	SAMEA4450079		"The BioSample ID could be empty before submitting BioSample. After the submission, the returned BioSample ID MUST be filled"
-organism	Animal name	text	mandatory	no	-	-	-	"OAR_RI_AF1, ANIMAL:::ID:::132713"	the name of the animal given by the researcher/farmer	
-organism	Alternative animal ID	limited values	recommended	no	-	-	-	11	the animal id used in the original data source	
-organism	Derived from	BioSample ID or Animal name	optional	max 2	-	-	-		Father and/or Mothers alternative animal ID or BioSamples ID	
-organism	Derived from alternative animal IDs	limited values	recommended	max 2						
-organism	Species	ontology_id	mandatory	no	-	-	"descendants of ""NCBITaxon_1"""	Sus scrofa		
-organism	Supplied breed	text	mandatory	no	-	-	-	Bunte Bentheimer	"the breed information contained in the original gene bank, very likely in the local language"	
-organism	EFABIS Breed country	text	mandatory	no	-	-	-	Germany	"the country where the breed locates, the country name should be in the INSDC list"	
-organism	Mapped breed	ontology_id	recommended	no	-	-	"descendants of ""LBO_0000000"""	LBO_0000347	the closest breed (if not identical) in the ontology library	
-organism	Sex	ontology_id	mandatory	no	-	-	"""PATO:0000384"",""PATO:0000383"""	PATO:0000384 (male)		
-organism	Birth location	text	recommended	no	-	-	-	Germany	name of the place where the animal was given birth	
-organism	Birth location longitude	number	recommended	no	-	decimal degrees	-			
-organism	Birth location latitude	number	recommended	no	-	decimal degrees	-			
-organism	Health status	ontology_id	recommended	yes	-	-	"PATO_0000461, descendants of EFO_0000408"			
-specimen from organism	conditions: Material:Specimen from Organism									
-specimen from organism	BioSample id	limited value	mandatory	no	SAMEAXXXXXXX			SAMEA4450075	The BioSample id of the sample	"The BioSample ID could be empty before submitting BioSample. After the submission, the returned BioSample ID MUST be filled"
-specimen from organism	Alternative id	limited value	mandatory	no				Siems_0722_393449		
-specimen from organism	Derived from	text	mandatory	no				SAMEA4450079	The BioSample id of the animal where the sample was collected from	
-specimen from organism	Sample name	text	mandatory	no				OAR_RI_AF1_AA		
-specimen from organism	Specimen collection protocol	uri	mandatory	no				ftp://ftp.faang.ebi.ac.uk/ftp/protocols/samples/WUR_SOP_animal_sampling_20160405.pdf	A link to the protocol used to collect this sample	
-specimen from organism	Collection date	date	mandatory	no		"YYYY-MM-DD, YYYY-MM, YYYY"		17/01/1992	Date when the sample was collected	
-specimen from organism	Collection place latitude	number	recommended	no		decimal degrees		47.86591		
-specimen from organism	Collection place longitude	number	recommended	no		decimal degrees		12.19115		
-specimen from organism	Collection place	text	mandatory	no				Germany		
-specimen from organism	Storage date	date	recommended	no		"YYYY-MM-DD, YYYY-MM, YYYY"		17/01/1992		
-specimen from organism	Collection date	date	recommended	no		"YYYY-MM-DD, YYYY-MM, YYYY"		18/01/1992		
-specimen from organism	Organism part	ontology_id	mandatory	no			"UBERON_0001062(include descendants), BTO_0000042(include descendants)"	UBERON_0001968 (semen)	"Ontology for part of organism specimen from, UBERON is preferred to BTO"	
-specimen from organism	Developmental stage	ontology_id	recommended	no			descendants of EFO_0000399	EFO_0001272 (Adult)	"developmental stage, any child term of EFO_0000399"	
-specimen from organism	Health status at collection	ontology_id	recommended	yes			"PATO_0000461, descendants of EFO_0000408"	PATO_0000461 (normal)	"animal disease / health status at point of collection. Healthy animals should have the term normal, otherwise use the as many disease terms as necessary from EFO"	
-specimen from organism	Animal age at collection	number	optional	no						
-specimen from organism	Specimen volume	number	optional	no						
+standard	Experiment type	ontology_id	mandatory	no	"""ATAC-seq"", ""ChIP-seq"",""DNase-Hypersensitivity seq"",""Hi-C"",""methylation profiling by high throughput sequencing"",""microRNA profiling by high throughput sequencing"",""transcription profiling by high throughput sequencing"",""RNA-seq of coding RNA"",""RNA-seq of non coding RNA"",""whole genome shotgun sequencing"""		"""EFO_0007045"",""EFO_0002692"",""EFO_0003752"",""EFO_0007693"",""EFO_0002761"",""EFO_0002896"",""EFO_0002770"",""EFO_0003738"",""EFO_0003737"",""EFO_0003744"""		The type of experiment performed	
+standard	Sample storage	text	optional	no	"""ambient temperature"",""cut slide"",""fresh"",""frozen, -70 freezer"",""frozen, -150 freezer"",""frozen, liquid nitrogen"",""frozen, vapor phase"",""paraffin block"",""RNAlater, frozen"",""TRIzol, frozen"""				"How the sample was stored. Temperatures are in celsius. 'Frozen, vapor phase' refers to storing samples above liquid nitrogen in the vapor"	
+standard	Sample storage processing	text	mandatory	no	"""cryopreservation in liquid nitrogen (dead tissue)"",""cryopreservation in dry ice (dead tissue)"",""cryopreservation of live cells in liquid nitrogen"",""cryopreservation, other"",""formalin fixed, unbuffered"",""formalin fixed, buffered"",""formalin fixed and paraffin embedded"",""fresh"""				How the sample was prepared for storage	
+standard	Sampling to preparation interval	number	mandatory	no		"""minutes"",""hours"",""days"",""weeks"",""month"",""years"""			"How long between the sample being taken and the assay experiment preperations commencing. If sample preperations were then left in intermediate stages after preperation commenced, for example as sheared chromatin, then this should be made clear in your protocols"	
+standard	Experimental protocol	uri_value	optional	no					"Link to the description of the experiment protocol, an overview of the full experiment, that can refer to the order in which other protocols were performed and any intermediate steps not covered by the extraction or assay specific protocols"	
+standard	Extraction protocol	uri_value	mandatory	no					Link to the protocol used to isolate the extract material	
+standard	Library preparation location	text	recommended	no					Location where library preperation was performed	
+standard	Library preparation location longitude	number	recommended	no		"""decimal degrees"""			Longitude of the library prep location in decimal degrees	
+standard	Library preparation location latitude	number	recommended	no		"""decimal degrees"""			Latitude of the library prep location in decimal degrees	
+standard	Library preparation date	date	recommended	no		"""YYYY-MM-DD"",""YYYY-MM"",""YYYY"""			Date on which the library was prepared	
+standard	Sequencing location	text	recommended	no					Location where sequencing was performed	
+standard	Sequencing location longitude	number	recommended	no		"""decimal degrees"""			Longitude of the location where sequencing was performed in decimal degrees	
+standard	Sequencing location latitude	number	recommended	no		"""decimal degrees"""			Latitude of the location where sequencing was performed in decimal degrees	
+standard	Sequencing date	date	recommended	no		"""YYYY-MM-DD"",""YYYY-MM"",""YYYY"""			Date on which sequencing was prepared	
+standard	Experiment target	ontology_id	mandatory	no	"""open_chromatin_region"",""DNA methylation"",""input DNA"",""histone_modification"",""chromatin"",""polyA RNA"""		"""SO_0001747"",""GO_0006306"",""EFO_0005031"",""SO_0001700 (leaf node descendants only)"",""GO_0000785"",""OBI_0000869"""		What the experiment was trying to find	
+ATAC-seq	conditions: Experiment type:ATAC-seq									
+ATAC-seq	Transposase protocol	uri_value	mandatory	no					Link to the protocol used for transposase treatment	
+BS-seq	conditions: Experiment type:methylation profiling by high throughput sequencing									
+BS-seq	Library selection	ontology_id	mandatory	no	"""shotgun bisulfite-seq assay"",""reduced representation bisulfite sequencing assay"",""Tet-assisted bisulfite sequencing assay"",""MethylC-Capture sequencing assay"""		"""OBI_0001863"",""OBI_0001862"",""OBI_0002086"",""OBI_0002094"""			
+BS-seq	Bisulfite conversion protocol	uri_value	mandatory	no					Link to bisulfite conversion protocol	
+BS-seq	PCR product isolation protocol	uri_value	mandatory	no					Link to the protocol for isolating PCR products used for library generation	
+BS-seq	Bisulfite conversion percentage	number	mandatory	no						
+BS-seq	Restriction enzyme	ec number	recommended	no					Restriction enzyme used for Reduced representation bisulfite sequencing	
+BS-seq	Maximum fragment size selection range	number	recommended	no						
+BS-seq	Minimum fragment size selection range	number	recommended	no						
+ChIP-seq	conditions: Experiment type:ChIP-seq									
+ChIP-seq	ChIP protocol	uri_value	mandatory	no						
+ChIP-seq	Library generation maximum fragment size range	number	mandatory	no						
+ChIP-seq	Library generation minimum fragment size range	number	mandatory	no						
+ChIP-seq histone modifications	"conditions: Experiment type:ChIP-seq,Experiment target:leaf node descendant of SO_0001700"									
+ChIP-seq histone modifications	ChIP antibody provider	text	mandatory	no					"The name of the company, laboratory or person that provided the antibody e.g. Diagneode"	
+ChIP-seq histone modifications	ChIP antibody catalog	text	mandatory	no					The catalog from which the antibody was purchased e.g. pAb-003-050	
+ChIP-seq histone modifications	ChIP antibody lot	text	mandatory	no					The lot identifier of the antibody e.g. A5051-001P	
+DNase-seq	conditions: Experiment type:DNase-Hypersensitivity seq									
+DNase-seq	DNase protocol	uri_value	mandatory	no						
+HiC	conditions: Experiment type:HiC									
+HiC	Restriction enzyme	ec number	mandatory	no					Restriction enzyme used	
+HiC	Restriction site	text	mandatory	no						
+RNA-seq	conditions: Experiment type:microRNA profiling by high throughput sequencing|RNA-seq of coding RNA|RNA-seq of non coding RNA|transcription profiling by high throughput sequencing									
+RNA-seq	RNA preparation 3' adapter ligation protocol	uri_value	mandatory	no						
+RNA-seq	RNA preparation 5' adapter ligation protocol	uri_value	mandatory	no						
+RNA-seq	Library generation pcr product isolation protocol	uri_value	mandatory	no						
+RNA-seq	Preparation reverse transcription protocol	uri_value	mandatory	no						
+RNA-seq	Library generation protocol	uri_value	mandatory	no						
+RNA-seq	Read strand	limited value	mandatory	no	"""not applicable"",""sense"",""antisense"",""mate 1 sense"",""mate 2 sense"",""non-stranded"""				"For strand specific protocol, specify which mate pair maps to the transcribed strand or Report 'non-stranded' if the protocol is not strand specific. For single-ended sequencing: use 'sense' if the reads should be on the same strand as the transcript, 'antisense' if on opposite strand. For paired-end sequencing: 'mate 1 sense' if mate 1 should be on the same strand as the transcript, 'mate 2 sense' if mate 2 should be on the same strand as the transcript"	
+RNA-seq	RNA purity - 260:280 ratio	number	recommended	no					"Sample purity assesed with fluoresence ratio at 260 and 280nm, informative for protein contamination"	
+RNA-seq	RNA purity - 260:230 ratio	number	recommended	no					"Sample purity assesed with fluoresence ratio at 260 and 230nm, informative for contamination by phenolate ion, thiocyanates, and other organic compounds"	
+RNA-seq	RNA integrity number	number	recommended	no					"It is important to obtain this value, but if you are unable to supply this number (e.g. due to machine failure) then by submitting you are asserting the quality by visual inspection of traces and agreeing that the samples were suitable for sequencing. For more information on RNA Integrity Numbers see Schroeder et al. (2006) http://bmcmolbiol.biomedcentral.com/articles/10.1186/1471-2199-7-3"	
+WGS	conditions: Experiment type:whole genome sequencing									
+WGS	Library generation PCR product isolation protocol	uri_value	mandatory	no						
+WGS	Library generation protocol	uri_value	mandatory	no						
+WGS	Library selection	limited value	optional	no	"""reduced representation"",""none"""					
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
 										
 										
 										
