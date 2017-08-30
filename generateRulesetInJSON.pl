@@ -26,16 +26,35 @@ for (my $i=0;$i<scalar @arr;$i++){
 	$headers{$i} = $arr[$i];
 }
 
+$"=">,<";
 my $line_count = 0;
 my %result;
-$"=">,<";
+my @section_names;
+my %section_rules;
 while ($line = <TSV>){
 	$line_count++;
 	$line=~s/\"//g; #Excel add "" to the strings when exporting as TSV file
 	chomp ($line);
 	next if ($line=~/^\s*$/); #skip empty line, condition (length $line==0) won't work as \t exists in the line
 	next if (substr($line,0,1) eq "#"); #skip lines starting with #
+	$line=~s/descendent/descendant/;
+	if ($line=~/\s+conditions:/){
+		my $section = $`;
+		my @conditions = split(",",&trim($'));
+		foreach my $condition(@conditions){
+			my ($term,$value)=split(":",$condition);
+			my @values = split(/\|/,$value);
+			if (scalar @values == 1){
+				$section_rules{$section}{$term} = $value;
+			}else{
+				@{$section_rules{$section}{$term}} = @values;
+			}
+		}
+		next;
+	}
 	@arr = split("\t",$line);
+	my $section = $arr[0];
+	push (@section_names,$section) unless (exists $result{$section});
 	my %hash;
 	for (my $col=1;$col<scalar @arr;$col++){
 		my $value = $arr[$col];
@@ -48,11 +67,14 @@ while ($line = <TSV>){
 				for (my $i=0;$i<scalar @tmp;$i++){
 					$tmp[$i] = trim($tmp[$i]); #could use trim() in modules (e.g. use String::Util qw(trim); or use Text::Trim qw(trim);), but they need to install
 					if(lc($headers{$col}) eq "valid_terms" || lc($headers{$col}) eq "valid terms"){
-#						print "$tmp[$i]\t";
 						my %abc;
 						my $tmp = $tmp[$i];
 						$tmp=~s/:/_/;
-						if ($tmp =~/^descendants? of /){#default allow_descendants = 1, see https://github.com/FAANG/validate-metadata/blob/master/lib/Bio/Metadata/Rules/PermittedTerm.pm
+						if($tmp=~/\(\s?leaf node descendants? only\s?\)/){
+							$abc{include_root}=0;
+							$abc{leaf_only}=1;
+							$tmp = &trim($`);
+						}elsif ($tmp =~/^descendants? of /){#default allow_descendants = 1, see https://github.com/FAANG/validate-metadata/blob/master/lib/Bio/Metadata/Rules/PermittedTerm.pm
 							$abc{include_root}=0; #default value is 1
 							$abc{allow_descendants}=1;
 							$tmp = $';
@@ -91,12 +113,26 @@ die "No data found in the input TSV file, please check the file. The most possib
 my %main;
 $main{description}="Validation rules for the IMAGE project.";
 $main{name}="IMAGE sample metadata rules";
+if ($json_file=~/experiment/){
+	$main{name}="IMAGE experiment metadata rules";
+}
 $main{further_details_iri}="https://github.com/bioinformatics-ptp/IMAGE-metadata/blob/master/README.md";
 my @rulesets;
-foreach my $sheet(keys %result){
+#foreach my $sheet(keys %result){
+foreach my $sheet(@section_names){
 	my %tmp;
 	$tmp{name}=$sheet;
 	$tmp{rules}=$result{$sheet};
+	if(exists $section_rules{$sheet}){
+		my @abc = keys %{$section_rules{$sheet}};
+		if (scalar @abc == 1){
+			$tmp{condition}{attribute_value_match} = $section_rules{$sheet};
+		}else{
+			foreach my $abc(@abc){
+				push (@{$tmp{condition}{attribute_value_match}},{$abc=>$section_rules{$sheet}{$abc}});
+			}
+		}
+	}
 	push(@rulesets,\%tmp);
 }
 $main{rule_groups}=\@rulesets;
