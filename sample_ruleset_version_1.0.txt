@@ -1,4 +1,4 @@
-Rulegroup	Name	Type	Required?	Allow Multiple?	Valid values	Valid units	Valid terms	Example	Description	comments
+Rulegroup	Name	Type	Required	Allow Multiple	Valid values	Valid units	Valid terms	Example	Description	comments
 standard	BioSample id	limited value	mandatory	no	SAMEAXXXXXXX			SAMEA4450075	"The BioSample id of the sample, automatically generated when sample is registered with IMAGE"	"The BioSample ID field will be completed upon submission to BioSamples, when the unqiue identifier will be assigned and returned"
 standard	Project	text	mandatory	no	"""IMAGE"""			IMAGE	"All samples are stated to be part of the ""IMAGE"" project, helps identify them in public databases"	
 standard	Submission title	text	mandatory	no				German National Sperm Bank	A descriptive title for the submission	
@@ -44,4 +44,3 @@ specimen from organism	Organism part	ontology_id	mandatory	no	"""semen"",""embry
 specimen from organism	Developmental stage	ontology_id	recommended	no			descendants of EFO_0000399	EFO_0001272 (Adult)	developmental stage of the animal from which the specimen is collected	
 specimen from organism	Animal age at collection	number	optional	no				3 years	Animal age at the point of collection.	
 specimen from organism	Availability	uri_value	recommended	no				mailto:vdc-internal@ebi.ac.uk	"Either an e-mail address to contact about availability or a link to a web page giving information on who to contact. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal accounts."
-	
