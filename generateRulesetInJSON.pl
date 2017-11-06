@@ -43,7 +43,7 @@ while ($line = <TSV>){
 		my @conditions = split(",",&trim($'));
 		foreach my $condition(@conditions){
 			my ($term,$value)=split(":",$condition);
-			my @values = split(/\|/,$value);
+			my @values = split(/\|/,$value);#must use //, not "", for \|
 			if (scalar @values == 1){
 				$section_rules{$section}{$term} = $value;
 			}else{
