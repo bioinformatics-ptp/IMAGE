@@ -103,34 +103,25 @@ Recommended:
   * `Sample storage` (*text*) How the sample was stored. Temperatures are in degree Celsius. 'Frozen, vapor phase' refers to storing samples above liquid nitrogen in the vapor Allowed values are:
     * ambient temperature
     * cut slide
-    * frozen
-    * -80 degrees Celsius freezer
-    * frozen
-    * -20 degrees Celsius freezer
-    * frozen
-    * liquid nitrogen
-    * frozen
-    * vapor phase
+    * frozen, -80 degrees Celsius freezer
+    * frozen, -20 degrees Celsius freezer
+    * frozen, liquid nitrogen
+    * frozen, vapor phase
     * paraffin block
-    * RNAlater
-    * frozen -20 degrees Celsius
-    * TRIzol
-    * frozen”
-    * paraffin block at ambient temperatures (+15 to +30 degrees Celsius)”
-    * ”freeze dried”
+    * RNAlater, frozen -20 degrees Celsius
+    * TRIzol, frozen
+    * paraffin block at ambient temperatures (+15 to +30 degrees Celsius)
+    * freeze dried
 
   * `Sample storage processing` (*text*) How the sample was prepared for storage Allowed values are:
     * cryopreservation in liquid nitrogen (dead tissue)
     * cryopreservation in dry ice (dead tissue)
     * cryopreservation of live cells in liquid nitrogen
-    * cryopreservation
-    * other
-    * formalin fixed
-    * unbuffered
-    * formalin fixed
-    * buffered
+    * cryopreservation, other
+    * formalin fixed, unbuffered
+    * formalin fixed, buffered
     * formalin fixed and paraffin embedded
-    * “freeze dried (vaiable for reproduction)”
+    * freeze dried (vaiable for reproduction)
     * freeze dried
 
 
