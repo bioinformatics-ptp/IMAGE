@@ -3,6 +3,7 @@ use JSON; #library for JSON IO
 use strict;
 use Data::Dumper; #library for debugging purpose
 
+require "misc.pl";
 #This script is to read in the metadata rulesets in the form of TSV file and convert into JSON format for display on the website
 #Written by Jun Fan@EBI
 
@@ -33,11 +34,11 @@ my @section_names;
 my %section_rules;
 while ($line = <TSV>){
 	$line_count++;
-	$line=~s/\"//g; #Excel add "" to the strings when exporting as TSV file
+#	$line=~s/\"//g; #Excel add "" to the strings when exporting as TSV file
 	chomp ($line);
 	next if ($line=~/^\s*$/); #skip empty line, condition (length $line==0) won't work as \t exists in the line
 	next if (substr($line,0,1) eq "#"); #skip lines starting with #
-	$line=~s/descendent/descendant/;
+	$line=~s/descendent/descendant/; #make term consistent
 	if ($line=~/\s+conditions:/){
 		my $section = $`;
 		my @conditions = split(",",&trim($'));
@@ -61,11 +62,13 @@ while ($line = <TSV>){
 		if (length $value>0){ #not empty, only populate the data structure with non-empty values
 			if(lc($headers{$col})=~/^valid/){ #in the columns starting with Valid there may be a list of allowed values separated by ,
 				#check whether it is a CSV string, if so, separate into array
-				my @tmp = split(",",$value);
-#				print "found valid in the line: $line\n<@tmp>\n";
+				$value=~s/^\"?//;
+				$value=~s/\"?$//;
+				my @tmp = &parseCSVline($value);
+##				print "found valid in the line: $line\n<@tmp>\n";
 				next if (scalar @tmp == 1 && $tmp[0] eq "-");
 				for (my $i=0;$i<scalar @tmp;$i++){
-					$tmp[$i] = trim($tmp[$i]); #could use trim() in modules (e.g. use String::Util qw(trim); or use Text::Trim qw(trim);), but they need to install
+					$tmp[$i] = &trim($tmp[$i]); #could use trim() in modules (e.g. use String::Util qw(trim); or use Text::Trim qw(trim);), but they need to install
 					if(lc($headers{$col}) eq "valid_terms" || lc($headers{$col}) eq "valid terms"){
 						my %abc;
 						my $tmp = $tmp[$i];
@@ -101,6 +104,7 @@ while ($line = <TSV>){
 #				$hash{$headers{$i}} = $value;
 				$hash{allow_multiple}=1 if (lc($value) eq "yes");
 			}else{
+				$value =~ s/\"//g;
 				$hash{$headers{$col}} = $value;
 			}
 		}

@@ -83,12 +83,10 @@ while ($line = <TSV>){
 				#my @tmp = split("\",\"",$value);
 				$value=~s/^\"?//;
 				$value=~s/\"?$//;
-				print "value: <$value>\n";
-				$"=">,<";
-				
+#				print "value: <$value>\n";
 				my @tmp = &parseCSVline($value);
 #				print "<@tmp>\n";
-				print "found valid in the line: $line\n<@tmp>\n";
+#				print "found valid in the line: $line\n<@tmp>\n";
 				next if (scalar @tmp == 1 && $tmp[0] eq "-");
 				for (my $i=0;$i<scalar @tmp;$i++){
 					$tmp[$i] = &trim($tmp[$i]); #could use trim() in modules (e.g. use String::Util qw(trim); or use Text::Trim qw(trim);), but they need to install
