@@ -8,10 +8,13 @@ require "misc.pl";
 
 $"=">,<";
 
-unless (scalar @ARGV == 1){
+unless (scalar @ARGV == 2){
 	&usage();
 	exit;
 }
+
+my $type = lc($ARGV[1]);
+die "Only value of sample or experiment is allowed for second parameter." unless ($type eq "sample" || $type eq "experiment");
 
 open TSV, "$ARGV[0]" || die "Could not find the specified tsv file $ARGV[0]\n";
 #header line
@@ -19,22 +22,59 @@ my $idx = rindex($ARGV[0],".");
 my $md_file = substr($ARGV[0],0,$idx).".md";
 
 my %section_info;
-$section_info{standard}{display} = "Common";
-$section_info{standard}{desc} = "These attributes should be present on every sample record.";
-$section_info{organism}{display} = "Animal";
-$section_info{organism}{desc} = "An animal sampled for IMAGE. The following attributes are in addition to the attributes listed in the 'Common' section above."; 
-$section_info{"specimen from organism"}{display} = "Sample";
-$section_info{"specimen from organism"}{desc} = "A piece of tissue taken from an animal. The following attributes are in addition to the attributes listed in the 'Common' section above.";
+$section_info{sample}{standard}{display} = "Common";
+$section_info{sample}{standard}{desc} = "These attributes should be present on every sample record.";
+$section_info{sample}{organism}{display} = "Animal";
+$section_info{sample}{organism}{desc} = "An animal sampled for IMAGE. The following attributes are in addition to the attributes listed in the 'Common' section above."; 
+$section_info{sample}{"specimen from organism"}{display} = "Sample";
+$section_info{sample}{"specimen from organism"}{desc} = "A piece of tissue taken from an animal. The following attributes are in addition to the attributes listed in the 'Common' section above.";
 
-$section_info{prefix} = "# IMAGE metadata - sample specification\n".
+$section_info{sample}{prefix} = "# IMAGE metadata - sample specification\n\n".
 
-"This document describes the specification for all sample metadata. The [experiment](image_experiment_metadata.md) document will be also available soon. \n\n".
+"This document describes the specification for all sample metadata. The [experiment](image_experiment_metadata.md) document is also available. \n\n".
 "In the sample context, we consider donor animals and tissue samples at the moment. All samples must be registered in BioSamples at EMBL-EBI as this sample archive has the best support for 'child of' and 'derived from' sample relationships. The NCBI BioSample database is a peer of the EMBL-EBI BioSamples, and they exchange data regularly. IMAGE samples should be registered in the EMBL-EBI BioSamples prior to data submission. This document describes the attributes which must be associated with any BioSamples submission as well as optional fields.\n\n".
 "## Sample metadata requirements\n\n".
 "Most requirements are laid out like this:\n\n".
-"* `attribute name` (*data type*) a brief description\n\n".
+" * `attribute name` (*data type*) a brief description\n\n".
 "The details of data types can be found [here](image_data_type.md).\n\n".
 "[BioSamples](http://www.ebi.ac.uk/biosamples) takes sample records with a set of attributes. Each attribute has a name and a value. It can also have 'Units', or a 'Term Source' and a 'Term Source ID'. The Term Source and ID allow us to refer to entries in other databases or ontologies. This is fully described on the [BioSamples help pages](http://www.ebi.ac.uk/biosamples/help/st_scd.html).\n\n";
+
+
+$section_info{experiment}{standard}{display} = "Common";
+$section_info{experiment}{standard}{desc} = "These attributes should be present on every experiment record.";
+$section_info{experiment}{"ATAC-seq"}{display} = "ATAC-seq";
+$section_info{experiment}{"ATAC-seq"}{desc} = "ATAC-seq experiments should have an `assay type` of [ATAC-seq](http://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_0007045).";
+$section_info{experiment}{"BS-seq"}{display} = "Bisulfite sequencing";
+$section_info{experiment}{"BS-seq"}{desc} = "Whole Genome Bisulfite Sequencing (WGBS) and Reduced Representation Bisulfite Sequencing (RRBS) experiments should have an `assay type` of [methylation profiling by high throughput sequencing](http://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_0002761).";
+$section_info{experiment}{"ChIP-seq"}{display} = "ChIP-seq standard rules for both histone modifications and input DNA";
+$section_info{experiment}{"ChIP-seq"}{desc} = "ChIP-seq experiments should have an `assay type` of  [ChIP-seq](http://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_0002692).\n\n".
+"Examples of the antibody information are from the [H3K4me3 antibody from Diagenode](https://www.diagenode.com/p/h3k4me3-polyclonal-antibody-premium-50-ug-50-ul), used by the BLUEPRINT project.";
+$section_info{experiment}{"ChIP-seq histone modifications"}{display} = "ChIP-seq for histone modifications";
+$section_info{experiment}{"ChIP-seq histone modifications"}{desc} = "ChIP-seq histone modification experiments should have an `assay type` of  [ChIP-seq](http://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_0002692).";
+$section_info{experiment}{"DNase-seq"}{display} = "DNase-Hypersensitivity seq";
+$section_info{experiment}{"DNase-seq"}{desc} = "DNase-seq experiments should have an `assay type` of  [DNase-Hypersensitivity seq](http://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_0003752).";
+$section_info{experiment}{HiC}{display} = "Hi-C";
+$section_info{experiment}{HiC}{desc} = "Hi-C experiments should have an `assay type` of [Hi-C](http://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_0007693).";
+$section_info{experiment}{"RNA-seq"}{display} = "RNA-seq";
+$section_info{experiment}{"RNA-seq"}{desc} = "RNA-seq experiemnts should have an `assay type` of one of the following:\n\n". 
+" * [RNA-seq of coding RNA](http://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_0003738)\n".
+" * [RNA-seq of non coding RNA](http://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_0003737)\n".
+" * [microRNA profiling by high throughput sequencing](http://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_0002896).\n\n";
+$section_info{experiment}{WGS}{display} = "Whole Genome Sequencing";
+$section_info{experiment}{WGS}{desc} = "Whole Genome Sequencing should have an `assay type` of [whole genome sequencing assay](http://www.ebi.ac.uk/ols/ontologies/obi/terms?short_form=OBI_0002117).\n";
+
+$section_info{experiment}{prefix} = "# IMAGE metadata - experiment specification\n\n".
+
+"This document describes the specification for all experiment metadata. The [sample](image_sample_metadata.md) document is also available.\n\n".
+"Experiments are expected to fall into two categories:\n\n".
+" 1. sequencing experiments, archived in an SRA (Sequence Read Archive) database (hosted at [EMBL-EBI](https://www.ebi.ac.uk/ena), [NCBI](http://www.ncbi.nlm.nih.gov/sra/) and [DDBJ](http://trace.ddbj.nig.ac.jp/dra/index_e.html)). Some of these submissions may be brokered by specialist services such as [ArrayExpress](https://www.ebi.ac.uk/arrayexpress/) and [GEO](http://www.ncbi.nlm.nih.gov/geo/)\n".
+" 2. array experiments, archived in [ArrayExpress](https://www.ebi.ac.uk/arrayexpress/) or [GEO](http://www.ncbi.nlm.nih.gov/geo/).\n\n".
+"## Experiment metadata requirements\n\n".
+"Requirements are laid out like this:\n\n".
+" * `attribute name` (*data type*) a brief description\n\n".
+"The details of data types can be found [here](image_data_type.md).\n\n".
+"SRA databases (ENA , NCBI, DDBJ) takes experiment records with a set of attributes. Each attribute has a name and a value, and can also have units. In contrast with the [BioSamples](www.ebi.ac.uk/biosamples) database, they do not have direct support for ontology terms.\n". 
+"Each assay type will require metadata in addition to the core set of common attributes. The initial set proposed is based upon the [IHEC metadata standards](http://ihec-epigenomes.org/research/reference-epigenome-standards/)\n\n";
 
 my $line = <TSV>;
 chomp ($line);
@@ -143,13 +183,14 @@ $main{name}="IMAGE sample metadata rules";
 #}
 $main{further_details_iri}="https://github.com/bioinformatics-ptp/IMAGE-metadata/blob/master/README.md";
 my @rulesets;
+
 print "The converted MarkDown will be saved in $md_file\n";
 open OUT,">$md_file";
-print OUT "$section_info{prefix}\n";
+print OUT "$section_info{$type}{prefix}\n";
 my @types = qw/mandatory recommended optional/;
 foreach my $sheet(@section_names){
-	print OUT "### $section_info{$sheet}{display}\n\n";
-	print OUT "$section_info{$sheet}{desc}\n\n" if (exists $section_info{$sheet}{desc});
+	print OUT "### $section_info{$type}{$sheet}{display}\n\n";
+	print OUT "$section_info{$type}{$sheet}{desc}\n\n" if (exists $section_info{$type}{$sheet}{desc});
 
 	foreach my $type(@types){
 		next unless (exists $result{$sheet}{$type});
@@ -221,7 +262,8 @@ $main{rule_groups}=\@rulesets;
 close OUT;
 
 sub usage(){
-	print "Usage: perl generateRulesetInMD.pl <rulesets.tsv>\n";
+	print "Usage: perl generateRulesetInMD.pl <rulesets.tsv> <sample|experiment>\n";
 	print "This script convert the rulesets in TSV format (compiled in Excel) into a MarkDown file.\n";
 	print "In the TSV file, there is a header line and the first column must be the sheet column\n";
+	print "The second parameter specifies the type of the ruleset\n";
 }

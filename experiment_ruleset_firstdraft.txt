@@ -1,43 +1,40 @@
-Rulegroup	Name	Type	Required?	Allow Multiple?	Valid values	Valid units	Valid terms	Example	Description	comment
-standard	Experiment type	ontology_id	mandatory	no	"""ATAC-seq"", ""ChIP-seq"",""DNase-Hypersensitivity seq"",""Hi-C"",""methylation profiling by high throughput sequencing"",""microRNA profiling by high throughput sequencing"",""transcription profiling by high throughput sequencing"",""RNA-seq of coding RNA"",""RNA-seq of non coding RNA"",""whole genome shotgun sequencing"""		"""EFO_0007045"",""EFO_0002692"",""EFO_0003752"",""EFO_0007693"",""EFO_0002761"",""EFO_0002896"",""EFO_0002770"",""EFO_0003738"",""EFO_0003737"",""EFO_0003744"""		The type of experiment performed	
-standard	Sample storage	text	optional	no	"""ambient temperature"",""cut slide"",""fresh"",""frozen, -70 freezer"",""frozen, -150 freezer"",""frozen, liquid nitrogen"",""frozen, vapor phase"",""paraffin block"",""RNAlater, frozen"",""TRIzol, frozen"""				"How the sample was stored. Temperatures are in celsius. 'Frozen, vapor phase' refers to storing samples above liquid nitrogen in the vapor"	
-standard	Sample storage processing	text	mandatory	no	"""cryopreservation in liquid nitrogen (dead tissue)"",""cryopreservation in dry ice (dead tissue)"",""cryopreservation of live cells in liquid nitrogen"",""cryopreservation, other"",""formalin fixed, unbuffered"",""formalin fixed, buffered"",""formalin fixed and paraffin embedded"",""fresh"""				How the sample was prepared for storage	
-standard	Sampling to preparation interval	number	mandatory	no		"""minutes"",""hours"",""days"",""weeks"",""month"",""years"""			"How long between the sample being taken and the assay experiment preperations commencing. If sample preperations were then left in intermediate stages after preperation commenced, for example as sheared chromatin, then this should be made clear in your protocols"	
+Rulegroup	Name	Type	Required	Allow Multiple	Valid values	Valid units	Valid terms	Example	Description	comment
+standard	Experiment type	ontology_id	mandatory	no	"""ATAC-seq"", ""ChIP-seq"",""DNase-Hypersensitivity seq"",""Hi-C"",""bisulfite sequencing"",""microRNA profiling by high throughput sequencing"",""transcription profiling by high throughput sequencing"",""RNA-seq of coding RNA"",""RNA-seq of non coding RNA"",""whole genome sequencing"",""genotyping SNP"", ""genotyping SSR"", ""genotyping other markers"""		"""EFO_0007045"",""EFO_0002692"",""EFO_0003752"",""EFO_0007693"",""OBI_0000748"",""EFO_0002896"",""EFO_0002770"",""EFO_0003738"",""EFO_0003737"",""OBI_0002117"""		The type of experiment performed	
 standard	Experimental protocol	uri_value	optional	no					"Link to the description of the experiment protocol, an overview of the full experiment, that can refer to the order in which other protocols were performed and any intermediate steps not covered by the extraction or assay specific protocols"	
-standard	Extraction protocol	uri_value	mandatory	no					Link to the protocol used to isolate the extract material	
+standard	Extraction protocol	uri_value	recommended	no					Link to the protocol used to isolate the extract material	
 standard	Library preparation location	text	recommended	no					Location where library preperation was performed	
 standard	Library preparation location longitude	number	recommended	no		"""decimal degrees"""			Longitude of the library prep location in decimal degrees	
 standard	Library preparation location latitude	number	recommended	no		"""decimal degrees"""			Latitude of the library prep location in decimal degrees	
 standard	Library preparation date	date	recommended	no		"""YYYY-MM-DD"",""YYYY-MM"",""YYYY"""			Date on which the library was prepared	
 standard	Sequencing location	text	recommended	no					Location where sequencing was performed	
-standard	Sequencing location longitude	number	recommended	no		"""decimal degrees"""			Longitude of the location where sequencing was performed in decimal degrees	
-standard	Sequencing location latitude	number	recommended	no		"""decimal degrees"""			Latitude of the location where sequencing was performed in decimal degrees	
+standard	Sequencing location longitude	number	optional	no		"""decimal degrees"""			Longitude of the location where sequencing was performed in decimal degrees	
+standard	Sequencing location latitude	number	optional	no		"""decimal degrees"""			Latitude of the location where sequencing was performed in decimal degrees	
 standard	Sequencing date	date	recommended	no		"""YYYY-MM-DD"",""YYYY-MM"",""YYYY"""			Date on which sequencing was prepared	
-standard	Experiment target	ontology_id	mandatory	no	"""open_chromatin_region"",""DNA methylation"",""input DNA"",""histone_modification"",""chromatin"",""polyA RNA"""		"""SO_0001747"",""GO_0006306"",""EFO_0005031"",""SO_0001700 (leaf node descendants only)"",""GO_0000785"",""OBI_0000869"""		What the experiment was trying to find	
-ATAC-seq	conditions: Experiment type:ATAC-seq									
-ATAC-seq	Transposase protocol	uri_value	mandatory	no					Link to the protocol used for transposase treatment	
-BS-seq	conditions: Experiment type:methylation profiling by high throughput sequencing									
-BS-seq	Library selection	ontology_id	mandatory	no	"""shotgun bisulfite-seq assay"",""reduced representation bisulfite sequencing assay"",""Tet-assisted bisulfite sequencing assay"",""MethylC-Capture sequencing assay"""		"""OBI_0001863"",""OBI_0001862"",""OBI_0002086"",""OBI_0002094"""			
+standard	Experiment target	ontology_id	mandatory	no	"""open_chromatin_region"",""DNA methylation"",""input DNA"",""histone_modification"",""chromatin"",""RNA"",""deoxyribonucleic acid"""		"""SO_0001747"",""GO_0006306"",""EFO_0005031"",""SO_0001700 (leaf node descendants only)"",""GO_0000785"",""CHEBI_33697"",""CHEBI_16991"""		What the experiment was trying to find	
+ATAC-seq	"conditions: Experiment type:ATAC-seq, Experiment target:open_chromatin_region"									
+ATAC-seq	Transposase protocol	uri_value	recommended	no					Link to the protocol used for transposase treatment	
+BS-seq	conditions: Experiment type:bisulfite sequencing									
+BS-seq	Library selection	ontology_id	mandatory	no	"""whole genome bisulfite sequencing"",""reduced representation bisulfite-seq"",""Tet-assisted bisulfite sequencing assay"",""MethylC-Capture sequencing assay"""		"""OBI_0001863"",""OBI_0001862"",""OBI_0002086"",""OBI_0002094"""			
 BS-seq	Bisulfite conversion protocol	uri_value	mandatory	no					Link to bisulfite conversion protocol	
 BS-seq	PCR product isolation protocol	uri_value	mandatory	no					Link to the protocol for isolating PCR products used for library generation	
 BS-seq	Bisulfite conversion percentage	number	mandatory	no						
 BS-seq	Restriction enzyme	ec number	recommended	no					Restriction enzyme used for Reduced representation bisulfite sequencing	
 BS-seq	Maximum fragment size selection range	number	recommended	no						
 BS-seq	Minimum fragment size selection range	number	recommended	no						
-ChIP-seq	conditions: Experiment type:ChIP-seq									
+ChIP-seq	"conditions: Experiment type:ChIP-seq,Experiment target:leaf node descendent of histone_modification|input DNA"									
 ChIP-seq	ChIP protocol	uri_value	mandatory	no						
 ChIP-seq	Library generation maximum fragment size range	number	mandatory	no						
 ChIP-seq	Library generation minimum fragment size range	number	mandatory	no						
-ChIP-seq histone modifications	"conditions: Experiment type:ChIP-seq,Experiment target:leaf node descendant of SO_0001700"									
+ChIP-seq histone modifications	"conditions: Experiment type:ChIP-seq,Experiment target:leaf node descendent of histone_modification"									
 ChIP-seq histone modifications	ChIP antibody provider	text	mandatory	no					"The name of the company, laboratory or person that provided the antibody e.g. Diagneode"	
 ChIP-seq histone modifications	ChIP antibody catalog	text	mandatory	no					The catalog from which the antibody was purchased e.g. pAb-003-050	
 ChIP-seq histone modifications	ChIP antibody lot	text	mandatory	no					The lot identifier of the antibody e.g. A5051-001P	
-DNase-seq	conditions: Experiment type:DNase-Hypersensitivity seq									
+DNase-seq	"conditions: Experiment type:DNase-Hypersensitivity seq, Experiment target:open_chromatin_region"									
 DNase-seq	DNase protocol	uri_value	mandatory	no						
-HiC	conditions: Experiment type:HiC									
+HiC	"conditions: Experiment type:HiC, Experiment target:chromatin"									
 HiC	Restriction enzyme	ec number	mandatory	no					Restriction enzyme used	
 HiC	Restriction site	text	mandatory	no						
-RNA-seq	conditions: Experiment type:microRNA profiling by high throughput sequencing|RNA-seq of coding RNA|RNA-seq of non coding RNA|transcription profiling by high throughput sequencing									
+RNA-seq	"conditions: Experiment type:microRNA profiling by high throughput sequencing|RNA-seq of coding RNA|RNA-seq of non coding RNA|transcription profiling by high throughput sequencing, Experiment target: RNA"									
 RNA-seq	RNA preparation 3' adapter ligation protocol	uri_value	mandatory	no						
 RNA-seq	RNA preparation 5' adapter ligation protocol	uri_value	mandatory	no						
 RNA-seq	Library generation pcr product isolation protocol	uri_value	mandatory	no						
@@ -47,7 +44,7 @@ RNA-seq	Read strand	limited value	mandatory	no	"""not applicable"",""sense"",""a
 RNA-seq	RNA purity - 260:280 ratio	number	recommended	no					"Sample purity assesed with fluoresence ratio at 260 and 280nm, informative for protein contamination"	
 RNA-seq	RNA purity - 260:230 ratio	number	recommended	no					"Sample purity assesed with fluoresence ratio at 260 and 230nm, informative for contamination by phenolate ion, thiocyanates, and other organic compounds"	
 RNA-seq	RNA integrity number	number	recommended	no					"It is important to obtain this value, but if you are unable to supply this number (e.g. due to machine failure) then by submitting you are asserting the quality by visual inspection of traces and agreeing that the samples were suitable for sequencing. For more information on RNA Integrity Numbers see Schroeder et al. (2006) http://bmcmolbiol.biomedcentral.com/articles/10.1186/1471-2199-7-3"	
-WGS	conditions: Experiment type:whole genome sequencing									
+WGS	"conditions: Experiment type:whole genome sequencing, Experiment target: deoxyribonucleic acid"									
 WGS	Library generation PCR product isolation protocol	uri_value	mandatory	no						
 WGS	Library generation protocol	uri_value	mandatory	no						
 WGS	Library selection	limited value	optional	no	"""reduced representation"",""none"""					

@@ -20,7 +20,7 @@ Text, using US English spellings.
 
 ### URI
 
-A URI,  such as 'http://www.imageh2020.eu//'. Depending on the context, http, ftp, mailto links may be appropriate. Examples:
+A URI,  such as 'http://www.imageh2020.eu/'. Depending on the context, http, ftp, mailto links may be appropriate. Examples:
 
  * ftp, ftp://ftp.image.ebi.ac.uk/ftp/README
  * http,  http://www.imageh2020.eu/

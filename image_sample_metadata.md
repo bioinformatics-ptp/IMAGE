@@ -1,5 +1,6 @@
 # IMAGE metadata - sample specification
-This document describes the specification for all sample metadata. The [experiment](image_experiment_metadata.md) document will be also available soon. 
+
+This document describes the specification for all sample metadata. The [experiment](image_experiment_metadata.md) document is also available. 
 
 In the sample context, we consider donor animals and tissue samples at the moment. All samples must be registered in BioSamples at EMBL-EBI as this sample archive has the best support for 'child of' and 'derived from' sample relationships. The NCBI BioSample database is a peer of the EMBL-EBI BioSamples, and they exchange data regularly. IMAGE samples should be registered in the EMBL-EBI BioSamples prior to data submission. This document describes the attributes which must be associated with any BioSamples submission as well as optional fields.
 
@@ -7,7 +8,7 @@ In the sample context, we consider donor animals and tissue samples at the momen
 
 Most requirements are laid out like this:
 
-* `attribute name` (*data type*) a brief description
+ * `attribute name` (*data type*) a brief description
 
 The details of data types can be found [here](image_data_type.md).
 
