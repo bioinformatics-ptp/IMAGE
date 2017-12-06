@@ -1,0 +1,591 @@
+{
+   "rule_groups" : [
+      {
+         "rules" : [
+            {
+               "Valid values" : [
+                  "ATAC-seq",
+                  "ChIP-seq",
+                  "DNase-Hypersensitivity seq",
+                  "Hi-C",
+                  "bisulfite sequencing",
+                  "microRNA profiling by high throughput sequencing",
+                  "transcription profiling by high throughput sequencing",
+                  "RNA-seq of coding RNA",
+                  "RNA-seq of non coding RNA",
+                  "whole genome sequencing",
+                  "genotyping SNP",
+                  "genotyping SSR",
+                  "genotyping other markers"
+               ],
+               "Type" : "ontology_id",
+               "Description" : "The type of experiment performed",
+               "Valid terms" : [
+                  {
+                     "allow_descendants" : 0,
+                     "include_root" : 1,
+                     "term" : "EFO_0007045",
+                     "ontology_name" : "EFO",
+                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0007045"
+                  },
+                  {
+                     "ontology_name" : "EFO",
+                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0002692",
+                     "term" : "EFO_0002692",
+                     "include_root" : 1,
+                     "allow_descendants" : 0
+                  },
+                  {
+                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0003752",
+                     "ontology_name" : "EFO",
+                     "term" : "EFO_0003752",
+                     "include_root" : 1,
+                     "allow_descendants" : 0
+                  },
+                  {
+                     "term" : "EFO_0007693",
+                     "ontology_name" : "EFO",
+                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0007693",
+                     "allow_descendants" : 0,
+                     "include_root" : 1
+                  },
+                  {
+                     "allow_descendants" : 0,
+                     "include_root" : 1,
+                     "term" : "OBI_0000748",
+                     "ontology_name" : "OBI",
+                     "term_iri" : "http://purl.obolibrary.org/obo/OBI_0000748"
+                  },
+                  {
+                     "allow_descendants" : 0,
+                     "include_root" : 1,
+                     "term" : "EFO_0002896",
+                     "ontology_name" : "EFO",
+                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0002896"
+                  },
+                  {
+                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0002770",
+                     "ontology_name" : "EFO",
+                     "term" : "EFO_0002770",
+                     "include_root" : 1,
+                     "allow_descendants" : 0
+                  },
+                  {
+                     "allow_descendants" : 0,
+                     "include_root" : 1,
+                     "term" : "EFO_0003738",
+                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0003738",
+                     "ontology_name" : "EFO"
+                  },
+                  {
+                     "include_root" : 1,
+                     "allow_descendants" : 0,
+                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0003737",
+                     "ontology_name" : "EFO",
+                     "term" : "EFO_0003737"
+                  },
+                  {
+                     "term" : "OBI_0002117",
+                     "ontology_name" : "OBI",
+                     "term_iri" : "http://purl.obolibrary.org/obo/OBI_0002117",
+                     "allow_descendants" : 0,
+                     "include_root" : 1
+                  }
+               ],
+               "Required" : "mandatory",
+               "Allow Multiple" : "no",
+               "Name" : "Experiment type"
+            },
+            {
+               "Name" : "Experimental protocol",
+               "Required" : "optional",
+               "Allow Multiple" : "no",
+               "Type" : "uri_value",
+               "Description" : "Link to the description of the experiment protocol, an overview of the full experiment, that can refer to the order in which other protocols were performed and any intermediate steps not covered by the extraction or assay specific protocols"
+            },
+            {
+               "Type" : "uri_value",
+               "Description" : "Link to the protocol used to isolate the extract material",
+               "Name" : "Extraction protocol",
+               "Allow Multiple" : "no",
+               "Required" : "recommended"
+            },
+            {
+               "Description" : "Location where library preperation was performed",
+               "Type" : "text",
+               "Allow Multiple" : "no",
+               "Required" : "recommended",
+               "Name" : "Library preparation location"
+            },
+            {
+               "Description" : "Longitude of the library prep location in decimal degrees",
+               "Type" : "number",
+               "Name" : "Library preparation location longitude",
+               "Valid units" : [
+                  "decimal degrees"
+               ],
+               "Allow Multiple" : "no",
+               "Required" : "recommended"
+            },
+            {
+               "Type" : "number",
+               "Description" : "Latitude of the library prep location in decimal degrees",
+               "Allow Multiple" : "no",
+               "Required" : "recommended",
+               "Name" : "Library preparation location latitude",
+               "Valid units" : [
+                  "decimal degrees"
+               ]
+            },
+            {
+               "Description" : "Date on which the library was prepared",
+               "Type" : "date",
+               "Required" : "recommended",
+               "Allow Multiple" : "no",
+               "Name" : "Library preparation date",
+               "Valid units" : [
+                  "YYYY-MM-DD",
+                  "YYYY-MM",
+                  "YYYY"
+               ]
+            },
+            {
+               "Type" : "text",
+               "Description" : "Location where sequencing was performed",
+               "Required" : "recommended",
+               "Allow Multiple" : "no",
+               "Name" : "Sequencing location"
+            },
+            {
+               "Type" : "number",
+               "Description" : "Longitude of the location where sequencing was performed in decimal degrees",
+               "Valid units" : [
+                  "decimal degrees"
+               ],
+               "Name" : "Sequencing location longitude",
+               "Required" : "optional",
+               "Allow Multiple" : "no"
+            },
+            {
+               "Name" : "Sequencing location latitude",
+               "Valid units" : [
+                  "decimal degrees"
+               ],
+               "Allow Multiple" : "no",
+               "Required" : "optional",
+               "Description" : "Latitude of the location where sequencing was performed in decimal degrees",
+               "Type" : "number"
+            },
+            {
+               "Allow Multiple" : "no",
+               "Required" : "recommended",
+               "Valid units" : [
+                  "YYYY-MM-DD",
+                  "YYYY-MM",
+                  "YYYY"
+               ],
+               "Name" : "Sequencing date",
+               "Description" : "Date on which sequencing was prepared",
+               "Type" : "date"
+            },
+            {
+               "Valid values" : [
+                  "open_chromatin_region",
+                  "DNA methylation",
+                  "input DNA",
+                  "histone_modification",
+                  "chromatin",
+                  "RNA",
+                  "deoxyribonucleic acid"
+               ],
+               "Type" : "ontology_id",
+               "Description" : "What the experiment was trying to find",
+               "Valid terms" : [
+                  {
+                     "include_root" : 1,
+                     "allow_descendants" : 0,
+                     "term_iri" : "http://purl.obolibrary.org/obo/SO_0001747",
+                     "ontology_name" : "SO",
+                     "term" : "SO_0001747"
+                  },
+                  {
+                     "include_root" : 1,
+                     "allow_descendants" : 0,
+                     "term_iri" : "http://purl.obolibrary.org/obo/GO_0006306",
+                     "ontology_name" : "GO",
+                     "term" : "GO_0006306"
+                  },
+                  {
+                     "include_root" : 1,
+                     "allow_descendants" : 0,
+                     "ontology_name" : "EFO",
+                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0005031",
+                     "term" : "EFO_0005031"
+                  },
+                  {
+                     "term" : "SO_0001700",
+                     "leaf_only" : 1,
+                     "term_iri" : "http://purl.obolibrary.org/obo/SO_0001700",
+                     "ontology_name" : "SO",
+                     "include_root" : 0
+                  },
+                  {
+                     "term_iri" : "http://purl.obolibrary.org/obo/GO_0000785",
+                     "ontology_name" : "GO",
+                     "term" : "GO_0000785",
+                     "include_root" : 1,
+                     "allow_descendants" : 0
+                  },
+                  {
+                     "term" : "CHEBI_33697",
+                     "ontology_name" : "CHEBI",
+                     "term_iri" : "http://purl.obolibrary.org/obo/CHEBI_33697",
+                     "allow_descendants" : 0,
+                     "include_root" : 1
+                  },
+                  {
+                     "ontology_name" : "CHEBI",
+                     "term_iri" : "http://purl.obolibrary.org/obo/CHEBI_16991",
+                     "term" : "CHEBI_16991",
+                     "include_root" : 1,
+                     "allow_descendants" : 0
+                  }
+               ],
+               "Required" : "mandatory",
+               "Allow Multiple" : "no",
+               "Name" : "Experiment target"
+            }
+         ],
+         "name" : "standard"
+      },
+      {
+         "rules" : [
+            {
+               "Name" : "conditions: Experiment type:ATAC-seq, Experiment target:open_chromatin_region"
+            },
+            {
+               "Description" : "Link to the protocol used for transposase treatment",
+               "Type" : "uri_value",
+               "Name" : "Transposase protocol",
+               "Allow Multiple" : "no",
+               "Required" : "recommended"
+            }
+         ],
+         "name" : "ATAC-seq"
+      },
+      {
+         "condition" : {
+            "attribute_value_match" : {
+               "Experiment type" : "bisulfite sequencing"
+            }
+         },
+         "name" : "BS-seq",
+         "rules" : [
+            {
+               "Name" : "Library selection",
+               "Allow Multiple" : "no",
+               "Required" : "mandatory",
+               "Valid terms" : [
+                  {
+                     "ontology_name" : "OBI",
+                     "term_iri" : "http://purl.obolibrary.org/obo/OBI_0001863",
+                     "term" : "OBI_0001863",
+                     "include_root" : 1,
+                     "allow_descendants" : 0
+                  },
+                  {
+                     "ontology_name" : "OBI",
+                     "term_iri" : "http://purl.obolibrary.org/obo/OBI_0001862",
+                     "term" : "OBI_0001862",
+                     "include_root" : 1,
+                     "allow_descendants" : 0
+                  },
+                  {
+                     "term" : "OBI_0002086",
+                     "ontology_name" : "OBI",
+                     "term_iri" : "http://purl.obolibrary.org/obo/OBI_0002086",
+                     "allow_descendants" : 0,
+                     "include_root" : 1
+                  },
+                  {
+                     "include_root" : 1,
+                     "allow_descendants" : 0,
+                     "term_iri" : "http://purl.obolibrary.org/obo/OBI_0002094",
+                     "ontology_name" : "OBI",
+                     "term" : "OBI_0002094"
+                  }
+               ],
+               "Type" : "ontology_id",
+               "Valid values" : [
+                  "whole genome bisulfite sequencing",
+                  "reduced representation bisulfite-seq",
+                  "Tet-assisted bisulfite sequencing assay",
+                  "MethylC-Capture sequencing assay"
+               ]
+            },
+            {
+               "Allow Multiple" : "no",
+               "Required" : "mandatory",
+               "Name" : "Bisulfite conversion protocol",
+               "Description" : "Link to bisulfite conversion protocol",
+               "Type" : "uri_value"
+            },
+            {
+               "Type" : "uri_value",
+               "Description" : "Link to the protocol for isolating PCR products used for library generation",
+               "Name" : "PCR product isolation protocol",
+               "Allow Multiple" : "no",
+               "Required" : "mandatory"
+            },
+            {
+               "Type" : "number",
+               "Name" : "Bisulfite conversion percentage",
+               "Allow Multiple" : "no",
+               "Required" : "mandatory"
+            },
+            {
+               "Name" : "Restriction enzyme",
+               "Required" : "recommended",
+               "Allow Multiple" : "no",
+               "Description" : "Restriction enzyme used for Reduced representation bisulfite sequencing",
+               "Type" : "ec number"
+            },
+            {
+               "Type" : "number",
+               "Required" : "recommended",
+               "Allow Multiple" : "no",
+               "Name" : "Maximum fragment size selection range"
+            },
+            {
+               "Type" : "number",
+               "Allow Multiple" : "no",
+               "Required" : "recommended",
+               "Name" : "Minimum fragment size selection range"
+            }
+         ]
+      },
+      {
+         "name" : "ChIP-seq",
+         "rules" : [
+            {
+               "Name" : "conditions: Experiment type:ChIP-seq,Experiment target:leaf node descendant of histone_modification|input DNA"
+            },
+            {
+               "Type" : "uri_value",
+               "Name" : "ChIP protocol",
+               "Allow Multiple" : "no",
+               "Required" : "mandatory"
+            },
+            {
+               "Required" : "mandatory",
+               "Allow Multiple" : "no",
+               "Name" : "Library generation maximum fragment size range",
+               "Type" : "number"
+            },
+            {
+               "Required" : "mandatory",
+               "Allow Multiple" : "no",
+               "Name" : "Library generation minimum fragment size range",
+               "Type" : "number"
+            }
+         ]
+      },
+      {
+         "name" : "ChIP-seq histone modifications",
+         "rules" : [
+            {
+               "Name" : "conditions: Experiment type:ChIP-seq,Experiment target:leaf node descendant of histone_modification"
+            },
+            {
+               "Type" : "text",
+               "Description" : "The name of the company, laboratory or person that provided the antibody e.g. Diagneode",
+               "Required" : "mandatory",
+               "Allow Multiple" : "no",
+               "Name" : "ChIP antibody provider"
+            },
+            {
+               "Type" : "text",
+               "Description" : "The catalog from which the antibody was purchased e.g. pAb-003-050",
+               "Name" : "ChIP antibody catalog",
+               "Allow Multiple" : "no",
+               "Required" : "mandatory"
+            },
+            {
+               "Type" : "text",
+               "Description" : "The lot identifier of the antibody e.g. A5051-001P",
+               "Required" : "mandatory",
+               "Allow Multiple" : "no",
+               "Name" : "ChIP antibody lot"
+            }
+         ]
+      },
+      {
+         "name" : "DNase-seq",
+         "rules" : [
+            {
+               "Name" : "conditions: Experiment type:DNase-Hypersensitivity seq, Experiment target:open_chromatin_region"
+            },
+            {
+               "Type" : "uri_value",
+               "Allow Multiple" : "no",
+               "Required" : "mandatory",
+               "Name" : "DNase protocol"
+            }
+         ]
+      },
+      {
+         "name" : "HiC",
+         "rules" : [
+            {
+               "Name" : "conditions: Experiment type:HiC, Experiment target:chromatin"
+            },
+            {
+               "Type" : "ec number",
+               "Description" : "Restriction enzyme used",
+               "Name" : "Restriction enzyme",
+               "Allow Multiple" : "no",
+               "Required" : "mandatory"
+            },
+            {
+               "Type" : "text",
+               "Name" : "Restriction site",
+               "Required" : "mandatory",
+               "Allow Multiple" : "no"
+            }
+         ]
+      },
+      {
+         "name" : "RNA-seq",
+         "rules" : [
+            {
+               "Name" : "conditions: Experiment type:microRNA profiling by high throughput sequencing|RNA-seq of coding RNA|RNA-seq of non coding RNA|transcription profiling by high throughput sequencing, Experiment target: RNA"
+            },
+            {
+               "Type" : "uri_value",
+               "Name" : "RNA preparation 3' adapter ligation protocol",
+               "Allow Multiple" : "no",
+               "Required" : "mandatory"
+            },
+            {
+               "Required" : "mandatory",
+               "Allow Multiple" : "no",
+               "Name" : "RNA preparation 5' adapter ligation protocol",
+               "Type" : "uri_value"
+            },
+            {
+               "Required" : "mandatory",
+               "Allow Multiple" : "no",
+               "Name" : "Library generation pcr product isolation protocol",
+               "Type" : "uri_value"
+            },
+            {
+               "Name" : "Preparation reverse transcription protocol",
+               "Required" : "mandatory",
+               "Allow Multiple" : "no",
+               "Type" : "uri_value"
+            },
+            {
+               "Type" : "uri_value",
+               "Required" : "mandatory",
+               "Allow Multiple" : "no",
+               "Name" : "Library generation protocol"
+            },
+            {
+               "Type" : "limited value",
+               "Description" : "For strand specific protocol, specify which mate pair maps to the transcribed strand or Report 'non-stranded' if the protocol is not strand specific. For single-ended sequencing: use 'sense' if the reads should be on the same strand as the transcript, 'antisense' if on opposite strand. For paired-end sequencing: 'mate 1 sense' if mate 1 should be on the same strand as the transcript, 'mate 2 sense' if mate 2 should be on the same strand as the transcript",
+               "Valid values" : [
+                  "not applicable",
+                  "sense",
+                  "antisense",
+                  "mate 1 sense",
+                  "mate 2 sense",
+                  "non-stranded"
+               ],
+               "Name" : "Read strand",
+               "Allow Multiple" : "no",
+               "Required" : "mandatory"
+            },
+            {
+               "Description" : "Sample purity assesed with fluoresence ratio at 260 and 280nm, informative for protein contamination",
+               "Type" : "number",
+               "Name" : "RNA purity - 260:280 ratio",
+               "Required" : "recommended",
+               "Allow Multiple" : "no"
+            },
+            {
+               "Required" : "recommended",
+               "Allow Multiple" : "no",
+               "Name" : "RNA purity - 260:230 ratio",
+               "Type" : "number",
+               "Description" : "Sample purity assesed with fluoresence ratio at 260 and 230nm, informative for contamination by phenolate ion, thiocyanates, and other organic compounds"
+            },
+            {
+               "Type" : "number",
+               "Description" : "It is important to obtain this value, but if you are unable to supply this number (e.g. due to machine failure) then by submitting you are asserting the quality by visual inspection of traces and agreeing that the samples were suitable for sequencing. For more information on RNA Integrity Numbers see Schroeder et al. (2006) http://bmcmolbiol.biomedcentral.com/articles/10.1186/1471-2199-7-3",
+               "Name" : "RNA integrity number",
+               "Required" : "recommended",
+               "Allow Multiple" : "no"
+            }
+         ]
+      },
+      {
+         "name" : "WGS",
+         "rules" : [
+            {
+               "Name" : "conditions: Experiment type:whole genome sequencing, Experiment target: deoxyribonucleic acid"
+            },
+            {
+               "Type" : "uri_value",
+               "Name" : "Library generation PCR product isolation protocol",
+               "Allow Multiple" : "no",
+               "Required" : "mandatory"
+            },
+            {
+               "Type" : "uri_value",
+               "Required" : "mandatory",
+               "Allow Multiple" : "no",
+               "Name" : "Library generation protocol"
+            },
+            {
+               "Required" : "optional",
+               "Allow Multiple" : "no",
+               "Name" : "Library selection",
+               "Valid values" : [
+                  "reduced representation",
+                  "none"
+               ],
+               "Type" : "limited value"
+            }
+         ]
+      },
+      {
+         "rules" : [
+            {
+               "Name" : "conditions: Experiment type:genotyping SNP|genotyping SSR|genotyping other markers, Experiment target: deoxyribonucleic acid"
+            },
+            {
+               "Type" : "limited value",
+               "Valid values" : [
+                  "SNP",
+                  "SSR",
+                  "Other markers"
+               ],
+               "Name" : "Genotyping type",
+               "Allow Multiple" : "no",
+               "Required" : "mandatory"
+            },
+            {
+               "Name" : "Genotyping protocol",
+               "Required" : "mandatory",
+               "Allow Multiple" : "no",
+               "Type" : "uri_value"
+            }
+         ],
+         "name" : "Genotyping"
+      }
+   ],
+   "further_details_iri" : "https://github.com/bioinformatics-ptp/IMAGE-metadata/blob/master/README.md",
+   "description" : "Validation rules for the IMAGE project.",
+   "name" : "IMAGE experiment metadata rules"
+}
+

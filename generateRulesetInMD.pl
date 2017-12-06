@@ -62,6 +62,8 @@ $section_info{experiment}{"RNA-seq"}{desc} = "RNA-seq experiemnts should have an
 " * [microRNA profiling by high throughput sequencing](http://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_0002896).\n\n";
 $section_info{experiment}{WGS}{display} = "Whole Genome Sequencing";
 $section_info{experiment}{WGS}{desc} = "Whole Genome Sequencing should have an `assay type` of [whole genome sequencing assay](http://www.ebi.ac.uk/ols/ontologies/obi/terms?short_form=OBI_0002117).\n";
+$section_info{experiment}{"Genotyping"}{display} = "Genotyping";
+$section_info{experiment}{"Genotyping"}{desc} = "\n";
 
 $section_info{experiment}{prefix} = "# IMAGE metadata - experiment specification\n\n".
 
