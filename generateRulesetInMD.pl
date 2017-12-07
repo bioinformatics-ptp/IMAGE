@@ -3,7 +3,7 @@ use strict;
 use Data::Dumper; #library for debugging purpose
 
 require "misc.pl";
-#This script is to read in the metadata rulesets in the form of TSV file and convert into JSON format for display on the website
+#This script is to read in the metadata rulesets in the form of TSV file and convert into MarkDown format for display on GitHub which could be further converted into PDF files
 #Written by Jun Fan@EBI
 
 $"=">,<";
@@ -20,7 +20,7 @@ open TSV, "$ARGV[0]" || die "Could not find the specified tsv file $ARGV[0]\n";
 #header line
 my $idx = rindex($ARGV[0],".");
 my $md_file = substr($ARGV[0],0,$idx).".md";
-
+#the section name should match to the values in the first column of the TSV ruleset
 my %section_info;
 $section_info{sample}{standard}{display} = "Common";
 $section_info{sample}{standard}{desc} = "These attributes should be present on every sample record.";
@@ -28,7 +28,7 @@ $section_info{sample}{organism}{display} = "Animal";
 $section_info{sample}{organism}{desc} = "An animal sampled for IMAGE. The following attributes are in addition to the attributes listed in the 'Common' section above."; 
 $section_info{sample}{"specimen from organism"}{display} = "Sample";
 $section_info{sample}{"specimen from organism"}{desc} = "A piece of tissue taken from an animal. The following attributes are in addition to the attributes listed in the 'Common' section above.";
-
+#prefix is for the context before sections
 $section_info{sample}{prefix} = "# IMAGE metadata - sample specification\n\n".
 
 "This document describes the specification for all sample metadata. The [experiment](image_experiment_metadata.md) document is also available. \n\n".
@@ -94,7 +94,6 @@ my @section_names;
 #my %section_rules;
 while ($line = <TSV>){
 	$line_count++;
-#	$line=~s/\"//g; #Excel add "" to the strings when exporting as TSV file
 	chomp ($line);
 	next if ($line=~/^\s*$/); #skip empty line, condition (length $line==0) won't work as \t exists in the line
 	next if (substr($line,0,1) eq "#"); #skip lines starting with #
@@ -180,9 +179,7 @@ die "No data found in the input TSV file, please check the file. The most possib
 my %main;
 $main{description}="Validation rules for the IMAGE project.";
 $main{name}="IMAGE sample metadata rules";
-#if ($json_file=~/experiment/){
-#	$main{name}="IMAGE experiment metadata rules";
-#}
+
 $main{further_details_iri}="https://github.com/bioinformatics-ptp/IMAGE-metadata/blob/master/README.md";
 my @rulesets;
 
