@@ -63,15 +63,15 @@ An animal sampled for IMAGE. The following attributes are in addition to the att
 
 Mandatory:
 
-  * `Animal name` (*text*) the name of the animal used in the original data source
+  * `Animal data source ID` (*text*) the animal id used in the original data source
   * `Species` (*ontology_id*) the species of the animal
-  * `Supplied breed` (*text*) the breed information contained in the original gene bank, could be a local language or breed variation
+  * `Supplied breed` (*text*) the breed information contained in the original data source, could be a local language or breed variation
   * `EFABIS Breed country` (*text*) the country where the breed locates, the country name should be in the INSDC list
   * `Sex` (*ontology_id*) the sex of the animal
 
 Recommended:
 
-  * `Alternative animal ID` (*limited values*) the animal id used in the original data source
+  * `Alternative animal ID` (*limited values*) Additional information which could help to identify the animal in the data source, e.g. animal unique name, secondary ID, accession etc.
   * `Mapped breed` (*ontology_id*) If possible breed will be mapped to a standardised breed ontology, both supplied and mapped breed will be available to end users
   * `Birth location` (*text*) name of the place where the animal was given birth
   * `Birth location longitude` (*number*) the longitude of the place where the animal was given birth in decimal degrees
@@ -79,7 +79,7 @@ Recommended:
 
 Optional:
 
-  * `Derived from` (*BioSample ID or Alternative animal ID*) Father and/or Mother's Alternative animal ID whose record must also be present as part of the subission or BioSamples ID if sample has been previously submitted
+  * `Derived from` (*BioSample ID or Alternative animal ID*) Father and/or Mother's animal ID whose record must also be present as part of the subission or BioSamples ID if sample has been previously submitted
 
 ### Sample
 
@@ -100,6 +100,7 @@ Recommended:
   * `Collection place latitude` (*number*) latitude of the place where the sample was collected
   * `Collection place longitude` (*number*) longitude of the place where the sample was collected
   * `Developmental stage` (*ontology_id*) developmental stage of the animal from which the specimen is collected
+  * `Physiological stage` (*ontology_id*) physiological stage of the animal from which the specimen is collected
   * `Availability` (*uri_value*) Either an e-mail address to contact about availability or a link to a web page giving information on who to contact. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal accounts.
   * `Sample storage` (*text*) How the sample was stored. Temperatures are in degree Celsius. 'Frozen, vapor phase' refers to storing samples above liquid nitrogen in the vapor Allowed values are:
     * ambient temperature
