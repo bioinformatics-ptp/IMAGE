@@ -15,19 +15,7 @@ The ruleset contains a number of fields that will be collected by the IMAGE inge
      * PDF overview document: the same one as in the **docs** folder with a different file name
      * Tab-delimited text file: a more detailed spreadsheet with additional notes and examples for some fields
      * JSON file: for developers who want to operate on the ruleset content. 
-     
  * **scripts** folder   
-   the scripts used to convert among different file formats, for details please see the flowchart below
+   the scripts used to convert among different file formats
  * **ruleset_history** folder   
    the historic versions of rulesets in the development.  
-   
-
-### The flowchart of conversion among different file formats
-```mermaid
-graph LR
-A[TSV file] -- generateInMD.pl --> B[MarkDown file]
-A -- generateInJSON.pl --> C[JSON file]
-B -- markdown2pdf --> D[PDF file]
-
-
- 
