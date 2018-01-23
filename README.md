@@ -12,10 +12,9 @@ The ruleset contains a number of fields that will be collected by the IMAGE inge
      * PDF files : a downloadable version
  * **rulesets** folder   
    The folder contains current rulesets files. For each ruleset, we have provided three versions of the same ruleset: 
-     * PDF overview document: the same one as in the **docs** folder with a different file name
+     * Markdown document: the same one as in the **docs** folder with a different file name
      * Tab-delimited text file: a more detailed spreadsheet with additional notes and examples for some fields
-     * JSON file: for developers who want to operate on the ruleset content. 
+     * JSON file: for developers who want to programmatically operate on the ruleset content. 
  * **scripts** folder   
    the scripts used to convert among different file formats
- * **ruleset_history** folder   
-   the historic versions of rulesets in the development.  
+ 
