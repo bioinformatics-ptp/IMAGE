@@ -1,6 +1,6 @@
 Rulegroup	Name	Type	Required	Allow Multiple	Valid values	Valid units	Valid terms	Example	Description
-standard	BioSample id	limited value	mandatory	no	SAMEAXXXXXXX			SAMEA4450075	"The BioSample id of the sample, automatically generated when sample is registered with IMAGE"
-standard	Project	text	mandatory	no	"""IMAGE"""			IMAGE	"All samples are stated to be part of the ""IMAGE"" project, helps identify them in public databases"
+standard	BioSample id	limited value	mandatory	no	SAMEAXXXXXXX			SAMEA4450075	"The BioSample id of the sample, automatically generated when IMAGE submitts the data on gene banks' behalves to BioSample archive"
+standard	Project	text	mandatory	no	"""IMAGE"""			IMAGE	"All samples are stated to be part of the ""IMAGE"" project, while still belonging to each individual gene banks. This tag helps identify them in public databases"
 standard	Submission title	text	mandatory	no				German National Sperm Bank	A descriptive title for the submission
 standard	Submission description	text	recommended	no				A collection of cattle samples from local breeding stocks	A brief description of the submission
 standard	Sample description	text	optional	no				Pig sperm sample from 3 year old duroc	A brief description of the sample
@@ -11,14 +11,14 @@ standard	Person first name	text	recommended	yes				Peter	"the first name of the 
 standard	Person email	uri_value	mandatory	yes				mailto:peter@ebi.ac.uk	email of contact person
 standard	Person affiliation	text	mandatory	yes				EMBL-EBI	affiliation of person
 standard	Person role	text	mandatory	yes			"descendants of ""EFO_0002012"""	Submitter	the role (type of the contribution) made by the person
-standard	Organization name	text	mandatory	yes				EMBL-EBI	"Organization name, multiple can be supplied"
+standard	Organization name	text	mandatory	yes				EMBL-EBI	"Organization name, multiple can be supplied, but at least one must be the name of the gene bank"
 standard	Organization address	text	recommended	yes				"European Bioinformatics Institute, Wellcome Trust Genome Campus, CB10 1SD, UK"	"The address of the organisation, multiple can be supplied"
 standard	Organization uri	uri_value	optional	yes				www.ebi.ac.uk	"the websites of orgnization, multiple can be supplied"
 standard	Organization country	text	recommended	yes	the controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary			United Kingdom	"Country in which organization resides, the controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary"
 standard	Organization role	ontology_id	mandatory	yes			"descendants of ""EFO_0002012"""	Submitter	"the role of the organization, e.g. biobank, funder"
 standard	Publication DOI	doi	optional	no				"""doi://10.1139/o09-005"""	"Publication associated with sample, supplied as the digital object identifier which can unambiguously point to the publication"
-standard	Data source name	text	mandatory	no				"""CyroWEB DE"", ""French system"""	the name of the genebank source type
-standard	Data source version	text	recommended	no				"""2017-04"", ""version 1.1"""	the version of the genebanks storage software
+standard	Data source type	limited value	mandatory	no	"""CyroWeb"", ""CRB-Anim"",""Template"""			"""CryoWeb"""	the type of the data source the current Inject tool can handle
+standard	Data source version	text	mandatory	no				"""DE 2017-04"", ""Peter Harrison sampleTemplate 2018-03-28"""	"the version of the data source, for CryoWeb it is suggested to be 2-letter Country code+version, for Template suggested to be user name+file name+date"
 organism	conditions: Material:Organism								
 organism	Animal data source ID	text	mandatory	no				"OAR_RI_AF1, ANIMAL:::ID:::132713"	the animal id used in the original data source
 organism	Alternative animal ID	limited values	recommended	no				11	"Additional information which could help to identify the animal in the data source, e.g. animal unique name, secondary ID, accession etc."

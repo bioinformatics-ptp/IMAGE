@@ -21,10 +21,10 @@ These attributes should be present on every sample record.
 
 Mandatory:
 
-  * `BioSample id` (*limited value*) The BioSample id of the sample, automatically generated when sample is registered with IMAGE Allowed values are:
+  * `BioSample id` (*limited value*) The BioSample id of the sample, automatically generated when IMAGE submitts the data on gene banks' behalves to BioSample archive Allowed values are:
     * SAMEAXXXXXXX
 
-  * `Project` (*text*) All samples are stated to be part of the IMAGE project, helps identify them in public databases Allowed values are:
+  * `Project` (*text*) All samples are stated to be part of the IMAGE project, while still belonging to each individual gene banks. This tag helps identify them in public databases Allowed values are:
     * IMAGE
 
   * `Submission title` (*text*) A descriptive title for the submission
@@ -36,9 +36,14 @@ Mandatory:
   * `Person email` (*uri_value*) email of contact person
   * `Person affiliation` (*text*) affiliation of person
   * `Person role` (*text*) the role (type of the contribution) made by the person
-  * `Organization name` (*text*) Organization name, multiple can be supplied
+  * `Organization name` (*text*) Organization name, multiple can be supplied, but at least one must be the name of the gene bank
   * `Organization role` (*ontology_id*) the role of the organization, e.g. biobank, funder
-  * `Data source name` (*text*) the name of the genebank source type
+  * `Data source type` (*limited value*) the type of the data source the current Inject tool can handle Allowed values are:
+    * CyroWeb
+    * CRB-Anim
+    * Template
+
+  * `Data source version` (*text*) the version of the data source, for CryoWeb it is suggested to be 2-letter Country code+version, for Template suggested to be user name+file name+date
 
 Recommended:
 
@@ -48,7 +53,6 @@ Recommended:
   * `Organization country` (*text*) Country in which organization resides, the controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary Allowed values are:
     * the controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary
 
-  * `Data source version` (*text*) the version of the genebanks storage software
 
 Optional:
 
