@@ -1,220 +1,236 @@
 {
-   "further_details_iri" : "https://github.com/bioinformatics-ptp/IMAGE-metadata/blob/master/README.md",
+   "description" : "Validation rules for the IMAGE project.",
    "rule_groups" : [
       {
          "name" : "standard",
          "rules" : [
             {
-               "Example" : "SAMEA4450075",
-               "Description" : "The BioSample id of the sample, automatically generated when IMAGE submitts the data on gene banks' behalves to BioSample archive",
-               "Type" : "limited value",
                "Name" : "BioSample id",
+               "Type" : "limited value",
+               "Description" : "The BioSample id of the sample, automatically generated when IMAGE submitts the data on gene banks' behalf to BioSample archive",
                "Valid values" : [
                   "SAMEAXXXXXXX"
                ],
-               "Required" : "mandatory",
-               "Allow Multiple" : "no"
+               "Allow Multiple" : "no",
+               "Example" : "SAMEA4450075",
+               "Required" : "mandatory"
             },
             {
-               "Description" : "All samples are stated to be part of the IMAGE project, while still belonging to each individual gene banks. This tag helps identify them in public databases",
-               "Example" : "IMAGE",
+               "Description" : "All samples are stated to be part of the IMAGE project, while still belonging to each individual gene bank. This tag is required to identify them in public databases",
                "Valid values" : [
                   "IMAGE"
                ],
+               "Allow Multiple" : "no",
+               "Example" : "IMAGE",
                "Required" : "mandatory",
-               "Type" : "text",
                "Name" : "Project",
-               "Allow Multiple" : "no"
+               "Type" : "text"
             },
             {
                "Allow Multiple" : "no",
+               "Description" : "A descriptive title for the submission",
+               "Example" : "German National Sperm Bank",
                "Required" : "mandatory",
                "Name" : "Submission title",
-               "Type" : "text",
-               "Description" : "A descriptive title for the submission",
-               "Example" : "German National Sperm Bank"
+               "Type" : "text"
             },
             {
                "Type" : "text",
                "Name" : "Submission description",
+               "Example" : "A collection of cattle samples from local breeding stocks",
                "Required" : "recommended",
                "Allow Multiple" : "no",
-               "Description" : "A brief description of the submission",
-               "Example" : "A collection of cattle samples from local breeding stocks"
+               "Description" : "A brief description of the submission"
             },
             {
-               "Description" : "A brief description of the sample",
-               "Example" : "Pig sperm sample from 3 year old duroc",
                "Type" : "text",
                "Name" : "Sample description",
                "Required" : "optional",
-               "Allow Multiple" : "no"
+               "Example" : "Pig sperm sample from 3 year old duroc",
+               "Allow Multiple" : "no",
+               "Description" : "A brief description of the sample"
             },
             {
-               "Example" : "Specimen from Organism",
-               "Description" : "type of the sample, either animal(organism) or sample (specimen from organism)",
-               "Name" : "Material",
                "Valid terms" : [
                   {
                      "term_iri" : "http://purl.obolibrary.org/obo/OBI_0100026",
-                     "term" : "OBI_0100026",
+                     "allow_descendants" : 0,
                      "include_root" : 1,
-                     "ontology_name" : "OBI",
-                     "allow_descendants" : 0
+                     "term" : "OBI_0100026",
+                     "ontology_name" : "OBI"
                   },
                   {
-                     "ontology_name" : "OBI",
-                     "allow_descendants" : 0,
                      "term" : "OBI_0001479",
+                     "include_root" : 1,
+                     "ontology_name" : "OBI",
                      "term_iri" : "http://purl.obolibrary.org/obo/OBI_0001479",
-                     "include_root" : 1
+                     "allow_descendants" : 0
                   }
                ],
-               "Required" : "mandatory",
                "Type" : "ontology_id",
+               "Name" : "Material",
+               "Example" : "Specimen from Organism",
+               "Allow Multiple" : "no",
+               "Description" : "type of the sample, either animal(organism) or sample (specimen from organism)",
+               "Required" : "mandatory",
                "Valid values" : [
                   "Organism",
                   "Specimen from organism"
-               ],
-               "Allow Multiple" : "no"
+               ]
             },
             {
-               "Type" : "text",
-               "Name" : "Person last name",
+               "Example" : "Harrison",
                "Required" : "mandatory",
                "Allow Multiple" : "yes",
                "Description" : "the last name of the submitter or contact for these samples, multiple persons can be provided",
-               "Example" : "Harrison"
-            },
-            {
-               "Example" : "W",
-               "Description" : "the initial of the submitter or contact for these samples, multiple persons can be provided",
                "Type" : "text",
-               "Name" : "Person initial",
-               "Required" : "optional",
-               "Allow Multiple" : "yes"
+               "Name" : "Person last name"
             },
             {
-               "Example" : "Peter",
-               "Description" : "the first name of the submitter or contact for these samples, multiple persons can be provided",
+               "Name" : "Person initial",
+               "Type" : "text",
                "Allow Multiple" : "yes",
+               "Description" : "the initial of the submitter or contact for these samples, multiple persons can be provided",
+               "Example" : "W",
+               "Required" : "optional"
+            },
+            {
                "Name" : "Person first name",
                "Type" : "text",
+               "Description" : "the first name of the submitter or contact for these samples, multiple persons can be provided",
+               "Allow Multiple" : "yes",
+               "Example" : "Peter",
                "Required" : "recommended"
             },
             {
+               "Description" : "email of contact person",
                "Allow Multiple" : "yes",
-               "Name" : "Person email",
-               "Type" : "uri_value",
-               "Required" : "mandatory",
                "Example" : "mailto:peter@ebi.ac.uk",
-               "Description" : "email of contact person"
+               "Required" : "mandatory",
+               "Name" : "Person email",
+               "Type" : "uri_value"
             },
             {
+               "Required" : "mandatory",
                "Example" : "EMBL-EBI",
+               "Allow Multiple" : "yes",
                "Description" : "affiliation of person",
-               "Required" : "mandatory",
-               "Name" : "Person affiliation",
                "Type" : "text",
-               "Allow Multiple" : "yes"
+               "Name" : "Person affiliation"
             },
             {
-               "Allow Multiple" : "yes",
-               "Valid terms" : [
-                  {
-                     "include_root" : 0,
-                     "term_iri" : "http://purl.obolibrary.org/obo/\"\"EFO_0002012",
-                     "term" : "\"\"EFO_0002012",
-                     "allow_descendants" : 1,
-                     "ontology_name" : "\"\"EFO"
-                  }
-               ],
-               "Required" : "mandatory",
                "Name" : "Person role",
                "Type" : "text",
+               "Valid terms" : [
+                  {
+                     "ontology_name" : "\"\"EFO",
+                     "term" : "\"\"EFO_0002012",
+                     "include_root" : 0,
+                     "allow_descendants" : 1,
+                     "term_iri" : "http://purl.obolibrary.org/obo/\"\"EFO_0002012"
+                  }
+               ],
+               "Allow Multiple" : "yes",
                "Description" : "the role (type of the contribution) made by the person",
-               "Example" : "Submitter"
+               "Example" : "Submitter",
+               "Required" : "mandatory"
             },
             {
-               "Example" : "EMBL-EBI",
                "Description" : "Organization name, multiple can be supplied, but at least one must be the name of the gene bank",
-               "Name" : "Organization name",
-               "Type" : "text",
+               "Allow Multiple" : "yes",
                "Required" : "mandatory",
-               "Allow Multiple" : "yes"
+               "Example" : "EMBL-EBI",
+               "Name" : "Organization name",
+               "Type" : "text"
             },
             {
-               "Example" : "European Bioinformatics Institute, Wellcome Trust Genome Campus, CB10 1SD, UK",
-               "Description" : "The address of the organisation, multiple can be supplied",
                "Name" : "Organization address",
                "Type" : "text",
-               "Required" : "recommended",
-               "Allow Multiple" : "yes"
-            },
-            {
-               "Description" : "the websites of orgnization, multiple can be supplied",
-               "Example" : "www.ebi.ac.uk",
-               "Name" : "Organization uri",
-               "Type" : "uri_value",
-               "Required" : "optional",
-               "Allow Multiple" : "yes"
-            },
-            {
                "Allow Multiple" : "yes",
+               "Description" : "The address of the organisation, multiple can be supplied",
+               "Example" : "European Bioinformatics Institute, Wellcome Trust Genome Campus, CB10 1SD, UK",
+               "Required" : "recommended"
+            },
+            {
+               "Example" : "www.ebi.ac.uk",
+               "Required" : "optional",
+               "Description" : "the websites of orgnization, multiple can be supplied",
+               "Allow Multiple" : "yes",
+               "Type" : "uri_value",
+               "Name" : "Organization uri"
+            },
+            {
+               "Type" : "text",
+               "Name" : "Organization country",
+               "Required" : "recommended",
+               "Example" : "United Kingdom",
                "Valid values" : [
                   "the controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary"
                ],
-               "Required" : "recommended",
-               "Type" : "text",
-               "Name" : "Organization country",
                "Description" : "Country in which organization resides, the controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary",
-               "Example" : "United Kingdom"
+               "Allow Multiple" : "yes"
             },
             {
-               "Name" : "Organization role",
+               "Required" : "mandatory",
+               "Example" : "Submitter",
+               "Allow Multiple" : "yes",
+               "Description" : "the role of the organization, e.g. biobank, funder",
                "Type" : "ontology_id",
                "Valid terms" : [
                   {
-                     "term_iri" : "http://purl.obolibrary.org/obo/\"\"EFO_0002012",
-                     "term" : "\"\"EFO_0002012",
-                     "include_root" : 0,
                      "ontology_name" : "\"\"EFO",
+                     "include_root" : 0,
+                     "term" : "\"\"EFO_0002012",
+                     "term_iri" : "http://purl.obolibrary.org/obo/\"\"EFO_0002012",
                      "allow_descendants" : 1
                   }
                ],
-               "Required" : "mandatory",
-               "Allow Multiple" : "yes",
-               "Example" : "Submitter",
-               "Description" : "the role of the organization, e.g. biobank, funder"
+               "Name" : "Organization role"
             },
             {
                "Required" : "optional",
-               "Name" : "Publication DOI",
-               "Type" : "doi",
-               "Allow Multiple" : "no",
+               "Example" : "doi://10.1139/o09-005",
                "Description" : "Publication associated with sample, supplied as the digital object identifier which can unambiguously point to the publication",
-               "Example" : "doi://10.1139/o09-005"
+               "Allow Multiple" : "no",
+               "Type" : "doi",
+               "Name" : "Publication DOI"
             },
             {
+               "Type" : "text",
+               "Name" : "Gene bank name",
+               "Required" : "mandatory",
+               "Example" : "CryoWeb",
+               "Description" : "The name of the gene bank the data belongs to, ideally use the value stored in EUGENA",
+               "Allow Multiple" : "no"
+            },
+            {
+               "Example" : "Italy",
+               "Required" : "mandatory",
+               "Description" : "Country in which Gene bank resides, particularly important when different countries use the same database structure, e.g. CryoWeb. The controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary",
+               "Allow Multiple" : "no",
                "Type" : "limited value",
-               "Name" : "Data source type",
+               "Name" : "Gene bank country"
+            },
+            {
+               "Allow Multiple" : "no",
+               "Description" : "the type of the data source the current Inject tool can handle",
                "Valid values" : [
                   "CyroWeb",
                   "CRB-Anim",
                   "Template"
                ],
                "Required" : "mandatory",
-               "Allow Multiple" : "no",
                "Example" : "CryoWeb",
-               "Description" : "the type of the data source the current Inject tool can handle"
+               "Name" : "Data source type",
+               "Type" : "limited value"
             },
             {
+               "Example" : "2018-04-27, version 1.5",
                "Required" : "mandatory",
-               "Name" : "Data source version",
-               "Type" : "text",
+               "Description" : "the version of the data source, suggested to be either the dump date or the version number used iby the source",
                "Allow Multiple" : "no",
-               "Example" : "DE 2017-04, Peter Harrison sampleTemplate 2018-03-28",
-               "Description" : "the version of the data source, for CryoWeb it is suggested to be 2-letter Country code+version, for Template suggested to be user name+file name+date"
+               "Type" : "text",
+               "Name" : "Data source version"
             }
          ]
       },
@@ -227,289 +243,282 @@
          "name" : "organism",
          "rules" : [
             {
+               "Description" : "the animal id used in the original data source",
                "Allow Multiple" : "no",
-               "Type" : "text",
-               "Name" : "Animal data source ID",
-               "Required" : "mandatory",
                "Example" : "OAR_RI_AF1, ANIMAL:::ID:::132713",
-               "Description" : "the animal id used in the original data source"
+               "Required" : "mandatory",
+               "Name" : "Animal data source ID",
+               "Type" : "text"
             },
             {
                "Description" : "Additional information which could help to identify the animal in the data source, e.g. animal unique name, secondary ID, accession etc.",
+               "Allow Multiple" : "no",
                "Example" : "11",
-               "Type" : "limited values",
-               "Name" : "Alternative animal ID",
                "Required" : "recommended",
-               "Allow Multiple" : "no"
+               "Name" : "Alternative animal ID",
+               "Type" : "limited values"
             },
             {
                "Allow Multiple" : "max 2",
-               "Required" : "optional",
-               "Type" : "BioSample ID or Alternative animal ID",
-               "Name" : "Derived from",
                "Description" : "Father and/or Mother's animal ID whose record must also be present as part of the subission or BioSamples ID if sample has been previously submitted",
-               "Example" : "SAMEA4450075 or 11"
+               "Example" : "SAMEA4450075 or 11",
+               "Required" : "optional",
+               "Name" : "Derived from",
+               "Type" : "BioSample ID or Alternative animal ID"
             },
             {
-               "Type" : "ontology_id",
                "Name" : "Species",
-               "Required" : "mandatory",
                "Valid terms" : [
                   {
                      "ontology_name" : "\"\"NCBITaxon",
-                     "allow_descendants" : 1,
-                     "term_iri" : "http://purl.obolibrary.org/obo/\"\"NCBITaxon_1",
+                     "include_root" : 0,
                      "term" : "\"\"NCBITaxon_1",
-                     "include_root" : 0
+                     "term_iri" : "http://purl.obolibrary.org/obo/\"\"NCBITaxon_1",
+                     "allow_descendants" : 1
                   }
                ],
+               "Type" : "ontology_id",
+               "Description" : "the species of the animal",
                "Allow Multiple" : "no",
                "Example" : "Sus scrofa",
-               "Description" : "the species of the animal"
+               "Required" : "mandatory"
             },
             {
-               "Allow Multiple" : "no",
-               "Name" : "Supplied breed",
-               "Type" : "text",
-               "Required" : "mandatory",
                "Description" : "the breed information contained in the original data source, could be a local language or breed variation",
-               "Example" : "Bunte Bentheimer"
+               "Allow Multiple" : "no",
+               "Example" : "Bunte Bentheimer",
+               "Required" : "mandatory",
+               "Name" : "Supplied breed",
+               "Type" : "text"
             },
             {
-               "Name" : "EFABIS Breed country",
-               "Type" : "text",
-               "Required" : "mandatory",
-               "Allow Multiple" : "no",
                "Description" : "the country where the breed locates, the country name should be in the INSDC list",
-               "Example" : "Germany"
+               "Allow Multiple" : "no",
+               "Required" : "mandatory",
+               "Example" : "Germany",
+               "Name" : "EFABIS Breed country",
+               "Type" : "text"
             },
             {
                "Valid terms" : [
                   {
                      "allow_descendants" : 1,
+                     "term_iri" : "http://purl.obolibrary.org/obo/\"\"LBO_0000000",
                      "ontology_name" : "\"\"LBO",
                      "include_root" : 0,
-                     "term_iri" : "http://purl.obolibrary.org/obo/\"\"LBO_0000000",
                      "term" : "\"\"LBO_0000000"
                   }
                ],
-               "Required" : "recommended",
-               "Name" : "Mapped breed",
                "Type" : "ontology_id",
+               "Name" : "Mapped breed",
+               "Example" : "LBO_0000347",
+               "Required" : "recommended",
                "Allow Multiple" : "no",
-               "Description" : "If possible breed will be mapped to a standardised breed ontology, both supplied and mapped breed will be available to end users",
-               "Example" : "LBO_0000347"
+               "Description" : "If possible breed will be mapped to a standardised breed ontology, both supplied and mapped breed will be available to end users"
             },
             {
+               "Required" : "mandatory",
                "Example" : "PATO:0000384 (male)",
                "Description" : "the sex of the animal",
                "Allow Multiple" : "no",
+               "Type" : "ontology_id",
                "Valid terms" : [
                   {
-                     "include_root" : 1,
+                     "allow_descendants" : 0,
                      "term_iri" : "http://purl.obolibrary.org/obo/PATO_0000384",
                      "term" : "PATO_0000384",
-                     "allow_descendants" : 0,
+                     "include_root" : 1,
                      "ontology_name" : "PATO"
                   },
                   {
-                     "ontology_name" : "PATO",
-                     "allow_descendants" : 0,
+                     "include_root" : 1,
                      "term" : "PATO_0000383",
+                     "ontology_name" : "PATO",
                      "term_iri" : "http://purl.obolibrary.org/obo/PATO_0000383",
-                     "include_root" : 1
+                     "allow_descendants" : 0
                   }
                ],
-               "Required" : "mandatory",
-               "Name" : "Sex",
-               "Type" : "ontology_id"
+               "Name" : "Sex"
             },
             {
                "Example" : "Germany",
-               "Description" : "name of the place where the animal was given birth",
-               "Allow Multiple" : "no",
                "Required" : "recommended",
+               "Allow Multiple" : "no",
+               "Description" : "name of the place where the animal was given birth",
                "Type" : "text",
                "Name" : "Birth location"
             },
             {
-               "Allow Multiple" : "no",
-               "Name" : "Birth location longitude",
                "Type" : "number",
-               "Required" : "recommended",
-               "Description" : "the longitude of the place where the animal was given birth in decimal degrees",
-               "Example" : "47.86591",
                "Valid units" : [
                   "decimal degrees"
-               ]
+               ],
+               "Name" : "Birth location longitude",
+               "Example" : "47.86591",
+               "Required" : "recommended",
+               "Allow Multiple" : "no",
+               "Description" : "the longitude of the place where the animal was given birth in decimal degrees"
             },
             {
-               "Description" : "the latitude of the place where the animal was given birth in decimal degrees",
-               "Example" : "12.19115",
+               "Name" : "Birth location latitude",
                "Valid units" : [
                   "decimal degrees"
                ],
                "Type" : "number",
-               "Name" : "Birth location latitude",
+               "Description" : "the latitude of the place where the animal was given birth in decimal degrees",
+               "Allow Multiple" : "no",
                "Required" : "recommended",
-               "Allow Multiple" : "no"
+               "Example" : "12.19115"
             }
          ]
       },
       {
-         "name" : "specimen from organism",
-         "condition" : {
-            "attribute_value_match" : {
-               "Material" : "Specimen from Organism"
-            }
-         },
          "rules" : [
             {
-               "Required" : "mandatory",
                "Type" : "limited value",
                "Name" : "Alternative id",
-               "Allow Multiple" : "no",
                "Example" : "Siems_0722_393449",
-               "Description" : "the sample id used in the original data source, unique and identifiable within the submitting gene bank"
-            },
-            {
-               "Example" : "SAMEA4450079",
-               "Description" : "The Alternative animal ID (whose record must also be present as part of the subission) or BioSamples ID (if sample has been previously submitted) of the animal from which sample specimen was collected",
                "Required" : "mandatory",
-               "Name" : "Derived from",
-               "Type" : "text",
+               "Description" : "the sample id used in the original data source, unique and identifiable within the submitting gene bank",
                "Allow Multiple" : "no"
             },
             {
-               "Example" : "OAR_RI_AF1_AA",
-               "Description" : "the name of the sample given by the submitter",
-               "Allow Multiple" : "no",
+               "Type" : "text",
+               "Name" : "Derived from",
+               "Example" : "SAMEA4450079",
                "Required" : "mandatory",
-               "Name" : "Sample name",
-               "Type" : "text"
+               "Allow Multiple" : "no",
+               "Description" : "The Alternative animal ID (whose record must also be present as part of the subission) or BioSamples ID (if sample has been previously submitted) of the animal from which sample specimen was collected"
             },
             {
+               "Required" : "mandatory",
+               "Example" : "OAR_RI_AF1_AA",
+               "Allow Multiple" : "no",
+               "Description" : "the name of the sample given by the submitter",
+               "Type" : "text",
+               "Name" : "Sample name"
+            },
+            {
+               "Type" : "uri",
+               "Name" : "Specimen collection protocol",
+               "Required" : "recommended",
                "Example" : "ftp://ftp.faang.ebi.ac.uk/ftp/protocols/samples/WUR_SOP_animal_sampling_20160405.pdf",
                "Description" : "A URL link to the protocol used to collect this sample",
-               "Allow Multiple" : "no",
-               "Required" : "recommended",
-               "Name" : "Specimen collection protocol",
-               "Type" : "uri"
+               "Allow Multiple" : "no"
             },
             {
-               "Description" : "Date when the sample was collected",
-               "Example" : "17/01/1992",
+               "Type" : "date",
                "Valid units" : [
                   "YYYY-MM-DD",
                   "YYYY-MM",
                   "YYYY"
                ],
                "Name" : "Collection date",
-               "Type" : "date",
                "Required" : "mandatory",
+               "Example" : "17/01/1992",
+               "Description" : "Date when the sample was collected",
                "Allow Multiple" : "no"
             },
             {
+               "Valid units" : [
+                  "decimal degrees"
+               ],
                "Type" : "number",
                "Name" : "Collection place latitude",
                "Required" : "recommended",
-               "Allow Multiple" : "no",
-               "Valid units" : [
-                  "decimal degrees"
-               ],
+               "Example" : "47.86591",
                "Description" : "latitude of the place where the sample was collected",
-               "Example" : "47.86591"
+               "Allow Multiple" : "no"
             },
             {
-               "Allow Multiple" : "no",
-               "Required" : "recommended",
-               "Name" : "Collection place longitude",
-               "Type" : "number",
                "Valid units" : [
                   "decimal degrees"
                ],
-               "Description" : "longitude of the place where the sample was collected",
-               "Example" : "12.19115"
-            },
-            {
-               "Description" : "name of the place where the sample was collected",
-               "Example" : "Germany",
+               "Type" : "number",
+               "Name" : "Collection place longitude",
+               "Example" : "12.19115",
+               "Required" : "recommended",
                "Allow Multiple" : "no",
-               "Type" : "text",
-               "Name" : "Collection place",
-               "Required" : "mandatory"
+               "Description" : "longitude of the place where the sample was collected"
             },
             {
+               "Name" : "Collection place",
+               "Type" : "text",
+               "Description" : "name of the place where the sample was collected",
                "Allow Multiple" : "no",
                "Required" : "mandatory",
+               "Example" : "Germany"
+            },
+            {
+               "Allow Multiple" : "no",
+               "Description" : "Ontology for organism part where the specimen was taken from",
+               "Required" : "mandatory",
+               "Example" : "UBERON_0001968 (semen)",
+               "Name" : "Organism part",
+               "Type" : "ontology_id",
                "Valid terms" : [
                   {
-                     "ontology_name" : "UBERON",
                      "allow_descendants" : 1,
                      "term_iri" : "http://purl.obolibrary.org/obo/UBERON_0001062",
                      "term" : "UBERON_0001062",
-                     "include_root" : 0
-                  }
-               ],
-               "Type" : "ontology_id",
-               "Name" : "Organism part",
-               "Description" : "Ontology for organism part where the specimen was taken from",
-               "Example" : "UBERON_0001968 (semen)"
-            },
-            {
-               "Allow Multiple" : "no",
-               "Required" : "recommended",
-               "Valid terms" : [
-                  {
-                     "ontology_name" : "EFO",
-                     "allow_descendants" : 1,
-                     "term" : "EFO_0000399",
-                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0000399",
-                     "include_root" : 0
-                  }
-               ],
-               "Type" : "ontology_id",
-               "Name" : "Developmental stage",
-               "Description" : "developmental stage of the animal from which the specimen is collected",
-               "Example" : "EFO_0001272 (adult)"
-            },
-            {
-               "Type" : "ontology_id",
-               "Name" : "Physiological stage",
-               "Required" : "recommended",
-               "Valid terms" : [
-                  {
-                     "term_iri" : "http://purl.obolibrary.org/obo/PATO_0000261",
-                     "term" : "PATO_0000261",
                      "include_root" : 0,
+                     "ontology_name" : "UBERON"
+                  }
+               ]
+            },
+            {
+               "Description" : "developmental stage of the animal from which the specimen is collected",
+               "Allow Multiple" : "no",
+               "Example" : "EFO_0001272 (adult)",
+               "Required" : "recommended",
+               "Name" : "Developmental stage",
+               "Type" : "ontology_id",
+               "Valid terms" : [
+                  {
+                     "term" : "EFO_0000399",
+                     "include_root" : 0,
+                     "ontology_name" : "EFO",
+                     "term_iri" : "http://purl.obolibrary.org/obo/EFO_0000399",
+                     "allow_descendants" : 1
+                  }
+               ]
+            },
+            {
+               "Name" : "Physiological stage",
+               "Type" : "ontology_id",
+               "Valid terms" : [
+                  {
                      "ontology_name" : "PATO",
+                     "include_root" : 0,
+                     "term" : "PATO_0000261",
+                     "term_iri" : "http://purl.obolibrary.org/obo/PATO_0000261",
                      "allow_descendants" : 1
                   }
                ],
                "Allow Multiple" : "no",
-               "Example" : "PATO_0001701 (mature)",
-               "Description" : "physiological stage of the animal from which the specimen is collected"
+               "Description" : "physiological stage of the animal from which the specimen is collected",
+               "Required" : "recommended",
+               "Example" : "PATO_0001701 (mature)"
             },
             {
-               "Description" : "Animal age at the point of collection.",
                "Example" : "3 years",
-               "Name" : "Animal age at collection",
-               "Type" : "number",
                "Required" : "optional",
-               "Allow Multiple" : "no"
+               "Description" : "Animal age at the point of collection.",
+               "Allow Multiple" : "no",
+               "Type" : "number",
+               "Name" : "Animal age at collection"
+            },
+            {
+               "Name" : "Availability",
+               "Type" : "uri_value",
+               "Description" : "Either an e-mail address to contact about availability or a link to a web page giving information on who to contact. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal accounts.",
+               "Allow Multiple" : "no",
+               "Example" : "mailto:vdc-internal@ebi.ac.uk",
+               "Required" : "recommended"
             },
             {
                "Required" : "recommended",
-               "Name" : "Availability",
-               "Type" : "uri_value",
-               "Allow Multiple" : "no",
-               "Description" : "Either an e-mail address to contact about availability or a link to a web page giving information on who to contact. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal accounts.",
-               "Example" : "mailto:vdc-internal@ebi.ac.uk"
-            },
-            {
                "Description" : "How the sample was stored. Temperatures are in degree Celsius. 'Frozen, vapor phase' refers to storing samples above liquid nitrogen in the vapor",
-               "Type" : "text",
-               "Name" : "Sample storage",
                "Valid values" : [
                   "ambient temperature",
                   "cut slide",
@@ -523,8 +532,9 @@
                   "paraffin block at ambient temperatures (+15 to +30 degrees Celsius)",
                   "freeze dried"
                ],
-               "Required" : "recommended",
-               "Allow Multiple" : "no"
+               "Allow Multiple" : "no",
+               "Type" : "text",
+               "Name" : "Sample storage"
             },
             {
                "Valid values" : [
@@ -538,14 +548,17 @@
                   "freeze dried (vaiable for reproduction)",
                   "freeze dried"
                ],
-               "Required" : "recommended",
-               "Type" : "text",
-               "Name" : "Sample storage processing",
+               "Description" : "How the sample was prepared for storage",
                "Allow Multiple" : "no",
-               "Description" : "How the sample was prepared for storage"
+               "Required" : "recommended",
+               "Name" : "Sample storage processing",
+               "Type" : "text"
             },
             {
                "Description" : "How long between the sample being taken and the assay experiment preperations commencing. If sample preperations were then left in intermediate stages after preperation commenced, for example as sheared chromatin, then this should be made clear in your protocols",
+               "Allow Multiple" : "no",
+               "Required" : "optional",
+               "Name" : "Sampling to preparation interval",
                "Valid units" : [
                   "minutes",
                   "hours",
@@ -560,15 +573,18 @@
                   "month",
                   "year"
                ],
-               "Allow Multiple" : "no",
-               "Type" : "number",
-               "Name" : "Sampling to preparation interval",
-               "Required" : "optional"
+               "Type" : "number"
             }
-         ]
+         ],
+         "name" : "specimen from organism",
+         "condition" : {
+            "attribute_value_match" : {
+               "Material" : "Specimen from Organism"
+            }
+         }
       }
    ],
    "name" : "IMAGE sample metadata rules",
-   "description" : "Validation rules for the IMAGE project."
+   "further_details_iri" : "https://github.com/bioinformatics-ptp/IMAGE-metadata/blob/master/README.md"
 }
 
