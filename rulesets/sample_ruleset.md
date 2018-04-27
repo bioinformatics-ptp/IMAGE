@@ -38,14 +38,14 @@ Mandatory:
   * `Person role` (*text*) the role (type of the contribution) made by the person
   * `Organization name` (*text*) Organization name, multiple can be supplied, but at least one must be the name of the gene bank
   * `Organization role` (*ontology_id*) the role of the organization, e.g. biobank, funder
-  * `Gene bank name` (*text*) The name of the gene bank the data belongs to, ideally use the value stored in EUGENA
-  * `Gene bank country` (*limited value*) Country in which Gene bank resides, particularly important when different countries use the same database structure, e.g. CryoWeb. The controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary
+  * `Gene bank name` (*text*) The name of the gene bank that the data of this submission belongs to, ideally use the value stored in EUGENA
+  * `Gene bank country` (*limited value*) Country in which the gene bank resides, particularly important when different countries use the same database infrastructure, e.g. CryoWeb. The controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary
   * `Data source type` (*limited value*) the type of the data source the current Inject tool can handle Allowed values are:
     * CyroWeb
     * CRB-Anim
     * Template
 
-  * `Data source version` (*text*) the version of the data source, suggested to be either the dump date or the version number used iby the source
+  * `Data source version` (*text*) the version of the data source, suggested to be either the dump date or the version number used by the source
 
 Recommended:
 
