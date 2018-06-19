@@ -21,9 +21,8 @@ These attributes should be present on every sample record.
 
 Mandatory:
 
-  * `BioSample id` (*limited value*) The BioSample id of the sample, automatically generated when IMAGE submitts the data on gene banks' behalf to BioSample archive Allowed values are:
-    * SAMEAXXXXXXX
-
+  * `Data source ID` (*text*) the id used in the original data source to identify the record
+  * `Alternative id` (*limited value*) the other identifier used in the orignal data source, e.g. accession, secondary id etc.
   * `Project` (*text*) All samples are stated to be part of the IMAGE project, while still belonging to each individual gene bank. This tag is required to identify them in public databases Allowed values are:
     * IMAGE
 
@@ -46,6 +45,7 @@ Mandatory:
     * Template
 
   * `Data source version` (*text*) the version of the data source, suggested to be either the dump date or the version number used by the source
+  * `Species` (*ontology_id*) the species of the sample record
 
 Recommended:
 
@@ -58,7 +58,7 @@ Recommended:
 
 Optional:
 
-  * `Sample description` (*text*) A brief description of the sample
+  * `Description` (*text*) A brief description of the sample
   * `Person initial` (*text*) the initial of the submitter or contact for these samples, multiple persons can be provided
   * `Organization uri` (*uri_value*) the websites of orgnization, multiple can be supplied
   * `Publication DOI` (*doi*) Publication associated with sample, supplied as the digital object identifier which can unambiguously point to the publication
@@ -69,15 +69,12 @@ An animal sampled for IMAGE. The following attributes are in addition to the att
 
 Mandatory:
 
-  * `Animal data source ID` (*text*) the animal id used in the original data source
-  * `Species` (*ontology_id*) the species of the animal
   * `Supplied breed` (*text*) the breed information contained in the original data source, could be a local language or breed variation
   * `EFABIS Breed country` (*text*) the country where the breed locates, the country name should be in the INSDC list
   * `Sex` (*ontology_id*) the sex of the animal
 
 Recommended:
 
-  * `Alternative animal ID` (*limited values*) Additional information which could help to identify the animal in the data source, e.g. animal unique name, secondary ID, accession etc.
   * `Mapped breed` (*ontology_id*) If possible breed will be mapped to a standardised breed ontology, both supplied and mapped breed will be available to end users
   * `Birth location` (*text*) name of the place where the animal was given birth
   * `Birth location longitude` (*number*) the longitude of the place where the animal was given birth in decimal degrees
@@ -85,7 +82,7 @@ Recommended:
 
 Optional:
 
-  * `Derived from` (*BioSample ID or Alternative animal ID*) Father and/or Mother's animal ID whose record must also be present as part of the subission or BioSamples ID if sample has been previously submitted
+  * `Child of` (*BioSample ID or Alternative animal ID*) Father and/or Mother's animal ID whose record must also be present as part of the subission or BioSamples ID if sample has been previously submitted
 
 ### Sample
 
@@ -93,9 +90,7 @@ A piece of tissue taken from an animal. The following attributes are in addition
 
 Mandatory:
 
-  * `Alternative id` (*limited value*) the sample id used in the original data source, unique and identifiable within the submitting gene bank
-  * `Derived from` (*text*) The Alternative animal ID (whose record must also be present as part of the subission) or BioSamples ID (if sample has been previously submitted) of the animal from which sample specimen was collected
-  * `Sample name` (*text*) the name of the sample given by the submitter
+  * `Derived from` (*text*) The data source id or alternative id of the animal from which the sample was collected
   * `Collection date` (*date*) Date when the sample was collected
   * `Collection place` (*text*) name of the place where the sample was collected
   * `Organism part` (*ontology_id*) Ontology for organism part where the specimen was taken from
