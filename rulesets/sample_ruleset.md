@@ -72,6 +72,13 @@ Mandatory:
   * `Supplied breed` (*text*) the breed information contained in the original data source, could be a local language or breed variation
   * `EFABIS Breed country` (*text*) the country where the breed locates, the country name should be in the INSDC list
   * `Sex` (*ontology_id*) the sex of the animal
+  * `Birth location accuracy` (*limited value*)  Allowed values are:
+    * missing geographic information
+    * country level
+    * region level
+    * subregion level
+    * precise coordinates
+
 
 Recommended:
 
@@ -93,6 +100,13 @@ Mandatory:
   * `Derived from` (*text*) The data source id or alternative id of the animal from which the sample was collected
   * `Collection date` (*date*) Date when the sample was collected
   * `Collection place` (*text*) name of the place where the sample was collected
+  * `Collection place accuracy` (*limited value*)  Allowed values are:
+    * missing geographic information
+    * country level
+    * region level
+    * subregion level
+    * precise coordinates
+
   * `Organism part` (*ontology_id*) Ontology for organism part where the specimen was taken from
 
 Recommended:
@@ -102,7 +116,10 @@ Recommended:
   * `Collection place longitude` (*number*) longitude of the place where the sample was collected
   * `Developmental stage` (*ontology_id*) developmental stage of the animal from which the specimen is collected
   * `Physiological stage` (*ontology_id*) physiological stage of the animal from which the specimen is collected
-  * `Availability` (*uri_value*) Either an e-mail address to contact about availability or a link to a web page giving information on who to contact. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal accounts.
+  * `Availability` (*uri_value or text*) Either an e-mail address to contact about availability or a link to a web page giving information on who to contact. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal accounts. Allowed values are:
+    * no longer available
+    * mailto:a.valid@email
+
   * `Sample storage` (*text*) How the sample was stored. Temperatures are in degree Celsius. 'Frozen, vapor phase' refers to storing samples above liquid nitrogen in the vapor Allowed values are:
     * ambient temperature
     * cut slide
