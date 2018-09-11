@@ -32,15 +32,15 @@ organism	Sex	ontology_id	mandatory	no			"""PATO:0000384"",""PATO:0000383"""	PATO
 organism	Birth location	text	recommended	no				Germany	name of the place where the animal was given birth
 organism	Birth location longitude	number	recommended	no		decimal degrees		47.86591	the longitude of the place where the animal was given birth in decimal degrees
 organism	Birth location latitude	number	recommended	no		decimal degrees		12.19115	the latitude of the place where the animal was given birth in decimal degrees
-organism	Birth location accuracy	limited value	mandatory	no	"""missing geographic information"",""country level"",""region level"",""subregion level"",""precise coordinates"""				
+organism	Birth location accuracy	limited value	mandatory	no	"""missing geographic information"",""country level"",""region level"",""subregion level"",""precise coordinates"",""unknown accuracy level"""				
 specimen from organism	conditions: Material:Specimen from Organism								
 specimen from organism	Derived from	text	mandatory	no				SAMEA4450079	The data source id or alternative id of the animal from which the sample was collected
 specimen from organism	Specimen collection protocol	uri	recommended	no				ftp://ftp.faang.ebi.ac.uk/ftp/protocols/samples/WUR_SOP_animal_sampling_20160405.pdf	A URL link to the protocol used to collect this sample
-specimen from organism	Collection date	date	mandatory	no		"YYYY-MM-DD, YYYY-MM, YYYY"		17/01/1992	Date when the sample was collected
+specimen from organism	Collection date	date	mandatory	no		"YYYY-MM-DD, YYYY-MM, YYYY"		1992-01-17	Date when the sample was collected
 specimen from organism	Collection place latitude	number	recommended	no		decimal degrees		47.86591	latitude of the place where the sample was collected
 specimen from organism	Collection place longitude	number	recommended	no		decimal degrees		12.19115	longitude of the place where the sample was collected
 specimen from organism	Collection place	text	mandatory	no				Germany	name of the place where the sample was collected
-specimen from organism	Collection place accuracy	limited value	mandatory	no	"""missing geographic information"",""country level"",""region level"",""subregion level"",""precise coordinates"""				
+specimen from organism	Collection place accuracy	limited value	mandatory	no	"""missing geographic information"",""country level"",""region level"",""subregion level"",""precise coordinates"",""unknown accuracy level"""				
 specimen from organism	Organism part	ontology_id	mandatory	no			descendants of UBERON_0001062	UBERON_0001968 (semen)	Ontology for organism part where the specimen was taken from
 specimen from organism	Developmental stage	ontology_id	recommended	no			descendants of EFO_0000399	EFO_0001272 (adult)	developmental stage of the animal from which the specimen is collected
 specimen from organism	Physiological stage	ontology_id	recommended	no			descendants of PATO_0000261	PATO_0001701 (mature)	physiological stage of the animal from which the specimen is collected

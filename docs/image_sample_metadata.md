@@ -78,6 +78,7 @@ Mandatory:
     * region level
     * subregion level
     * precise coordinates
+    * unknown accuracy level
 
 
 Recommended:
@@ -106,6 +107,7 @@ Mandatory:
     * region level
     * subregion level
     * precise coordinates
+    * unknown accuracy level
 
   * `Organism part` (*ontology_id*) Ontology for organism part where the specimen was taken from
 
