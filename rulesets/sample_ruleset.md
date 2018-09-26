@@ -76,7 +76,6 @@ Mandatory:
     * missing geographic information
     * country level
     * region level
-    * subregion level
     * precise coordinates
     * unknown accuracy level
 
@@ -105,7 +104,6 @@ Mandatory:
     * missing geographic information
     * country level
     * region level
-    * subregion level
     * precise coordinates
     * unknown accuracy level
 
