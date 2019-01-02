@@ -148,12 +148,6 @@ open JSON_OUT,">$json_file";
 print JSON_OUT "$json\n";
 close JSON_OUT;
 
-sub trim(){
-	my $s = shift;
-	$s =~ s/^\s+|\s+$//g;
-	return $s;
-}
-
 sub usage(){
 	print "Usage: perl generateRulesetInJSON.pl <rulesets.tsv>\n";
 	print "This script convert the rulesets in TSV format (compiled in Excel) into a JSON file.\n";

@@ -28,11 +28,11 @@ Mandatory:
 
   * `Submission title` (*text*) A descriptive title for the submission
   * `Material` (*ontology_id*) type of the sample, either animal(organism) or sample (specimen from organism) Allowed values are:
-    * [Organism](http://purl.obolibrary.org/obo/OBI_0100026)
-    * [Specimen from organism](http://purl.obolibrary.org/obo/OBI_0001479)
+    * [organism](http://purl.obolibrary.org/obo/OBI_0100026)
+    * [specimen from organism](http://purl.obolibrary.org/obo/OBI_0001479)
 
   * `Person last name` (*text*) the last name of the submitter or contact for these samples, multiple persons can be provided
-  * `Person email` (*uri_value*) email of contact person
+  * `Person email` (*uri*) email of contact person
   * `Person affiliation` (*text*) affiliation of person
   * `Person role` (*text*) the role (type of the contribution) made by the person
   * `Organization name` (*text*) Organization name, multiple can be supplied, but at least one must be the name of the gene bank
@@ -40,7 +40,7 @@ Mandatory:
   * `Gene bank name` (*text*) The name of the gene bank that the data of this submission belongs to, ideally use the value stored in EUGENA
   * `Gene bank country` (*limited value*) Country in which the gene bank resides, particularly important when different countries use the same database infrastructure, e.g. CryoWeb. The controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary
   * `Data source type` (*limited value*) the type of the data source the current Inject tool can handle Allowed values are:
-    * CyroWeb
+    * CryoWeb
     * CRB-Anim
     * Template
 
@@ -52,15 +52,30 @@ Recommended:
   * `Submission description` (*text*) A brief description of the submission
   * `Person first name` (*text*) the first name of the submitter or contact for these samples, multiple persons can be provided
   * `Organization address` (*text*) The address of the organisation, multiple can be supplied
-  * `Organization country` (*text*) Country in which organization resides, the controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary Allowed values are:
-    * the controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary
+  * `Organization country` (*text*) Country in which organization resides, the organization list is maintained at https://github.com/cnr-ibba/IMAGE-InjectTool/blob/devel/django-data/image/image_app/management/commands/organization_list.csv Allowed values are:
+    * [France](http://purl.obolibrary.org/obo/NCIT_C16592)
+    * [Egypt](http://purl.obolibrary.org/obo/NCIT_C16530)
+    * [Colombia](http://purl.obolibrary.org/obo/NCIT_C16449)
+    * [Switzerland](http://purl.obolibrary.org/obo/NCIT_C17181)
+    * [Netherlands](http://purl.obolibrary.org/obo/NCIT_C16903)
+    * [Germany](http://purl.obolibrary.org/obo/NCIT_C16636)
+    * [Italy](http://purl.obolibrary.org/obo/NCIT_C16761)
+    * [Hungary](http://purl.obolibrary.org/obo/NCIT_C16699)
+    * [Morocco](http://purl.obolibrary.org/obo/NCIT_C16878)
+    * [Spain](http://purl.obolibrary.org/obo/NCIT_C17152)
+    * [Argentina](http://purl.obolibrary.org/obo/NCIT_C16305)
+    * [Sweden](http://purl.obolibrary.org/obo/NCIT_C17180)
+    * [United Kingdom](http://purl.obolibrary.org/obo/NCIT_C17233)
+    * [Poland](http://purl.obolibrary.org/obo/NCIT_C17002)
+    * [Portugal](http://purl.obolibrary.org/obo/NCIT_C17006)
+    * [Austria](http://purl.obolibrary.org/obo/NCIT_C16312)
 
 
 Optional:
 
   * `Description` (*text*) A brief description of the sample
   * `Person initial` (*text*) the initial of the submitter or contact for these samples, multiple persons can be provided
-  * `Organization uri` (*uri_value*) the websites of orgnization, multiple can be supplied
+  * `Organization uri` (*uri*) the websites of orgnization, multiple can be supplied
   * `Publication DOI` (*doi*) Publication associated with sample, supplied as the digital object identifier which can unambiguously point to the publication
 
 ### Animal
@@ -89,7 +104,7 @@ Recommended:
 
 Optional:
 
-  * `Child of` (*BioSample ID or Alternative animal ID*) Father and/or Mother's animal ID whose record must also be present as part of the subission or BioSamples ID if sample has been previously submitted
+  * `Child of` (*text*) Father and/or Mother's animal ID whose record must also be present as part of the subission or BioSamples ID if sample has been previously submitted
 
 ### Sample
 
@@ -116,7 +131,7 @@ Recommended:
   * `Collection place longitude` (*number*) longitude of the place where the sample was collected
   * `Developmental stage` (*ontology_id*) developmental stage of the animal from which the specimen is collected
   * `Physiological stage` (*ontology_id*) physiological stage of the animal from which the specimen is collected
-  * `Availability` (*uri_value or text*) Either an e-mail address to contact about availability or a link to a web page giving information on who to contact. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal accounts. Allowed values are:
+  * `Availability` (*text*) Either an e-mail address to contact about availability or a link to a web page giving information on who to contact. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal accounts. Allowed values are:
     * no longer available
     * mailto:a.valid@email
 
