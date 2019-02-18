@@ -57,6 +57,8 @@ while ($line = <TSV>){
 	my $section = $arr[0];
 	push (@section_names,$section) unless (exists $result{$section});
 	my %hash;
+	my @allowed_values;
+	my $value_match_terms = 0;
 	for (my $col=1;$col<scalar @arr;$col++){
 		my $value = $arr[$col];
 		if (length $value>0){ #not empty, only populate the data structure with non-empty values
@@ -67,12 +69,18 @@ while ($line = <TSV>){
 				my @tmp = &parseCSVline($value);
 ##				print "found valid in the line: $line\n<@tmp>\n";
 				next if (scalar @tmp == 1 && $tmp[0] eq "-");
+				
 				for (my $i=0;$i<scalar @tmp;$i++){
 					$tmp[$i] = &trim($tmp[$i]); #could use trim() in modules (e.g. use String::Util qw(trim); or use Text::Trim qw(trim);), but they need to install
 					if(lc($headers{$col}) eq "valid_terms" || lc($headers{$col}) eq "valid terms"){
 						my %abc;
 						my $tmp = $tmp[$i];
+						if (scalar @allowed_values == scalar @tmp){
+							$abc{label} = $allowed_values[$i];
+							$value_match_terms = 1;
+						}
 						$tmp=~s/:/_/;
+						$tmp=~s/\"//g;
 						if($tmp=~/\(\s?leaf node descendants? only\s?\)/){
 							$abc{include_root}=0;
 							$abc{leaf_only}=1;
@@ -93,9 +101,11 @@ while ($line = <TSV>){
 						my ($library)=split("_",$tmp);
 						$abc{ontology_name} = $library;
 						$abc{term} = $tmp;
-						$abc{term_iri} = "http://purl.obolibrary.org/obo/$tmp";
-						$abc{term_iri} = "http://www.ebi.ac.uk/ols/ontologies/lbo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$tmp" if ($library eq "LBO");
+						# $abc{term_iri} = "http://purl.obolibrary.org/obo/$tmp";
+						# $abc{term_iri} = "http://www.ebi.ac.uk/ols/ontologies/lbo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$tmp" if ($library eq "LBO");
 						$tmp[$i]=\%abc;
+					}if(lc($headers{$col}) eq "valid_values" || lc($headers{$col}) eq "valid values"){
+						push(@allowed_values,$tmp[$i]);
 					}
 				}
 				$hash{$headers{$col}} = \@tmp;
@@ -108,6 +118,10 @@ while ($line = <TSV>){
 				$hash{$headers{$col}} = $value;
 			}
 		}
+	}
+	if ($value_match_terms == 1 && $hash{Type} eq "ontology_id"){
+		delete $hash{"Valid values"} if (exists $hash{"Valid values"});
+		delete $hash{"valid_values"} if (exists $hash{"valid_values"});
 	}
 	push(@{$result{$arr[0]}},\%hash); #first column in the TSV file indicates the sheet (section)
 }
