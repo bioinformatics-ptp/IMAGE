@@ -28,7 +28,7 @@ organism	Child of	text	optional	max 2				SAMEA4450075 or 11	Father and/or Mother
 organism	Supplied breed	text	mandatory	no				Bunte Bentheimer	"the breed information contained in the original data source, could be a local language or breed variation"
 organism	EFABIS Breed country	text	mandatory	no				Germany	"the country where the breed locates, the country name should be in the INSDC list"
 organism	Mapped breed	ontology_id	recommended	no			"descendants of ""LBO_0000000"""	LBO_0000347	"If possible breed will be mapped to a standardised breed ontology, both supplied and mapped breed will be available to end users"
-organism	Sex	ontology_id	mandatory	no			"""PATO:0000384"",""PATO:0000383"""	PATO:0000384 (male)	the sex of the animal
+organism	Sex	ontology_id	mandatory	no			"""PATO:0000384"",""PATO:0000383"",""OBI_0000858"""	PATO:0000384 (male)	the sex of the animal
 organism	Birth location	text	recommended	no				Germany	name of the place where the animal was given birth
 organism	Birth location longitude	number	recommended	no		decimal degrees		47.86591	the longitude of the place where the animal was given birth in decimal degrees
 organism	Birth location latitude	number	recommended	no		decimal degrees		12.19115	the latitude of the place where the animal was given birth in decimal degrees
