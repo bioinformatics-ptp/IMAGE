@@ -115,6 +115,7 @@ Mandatory:
 Recommended:
 
   * `Mapped breed` (*ontology_id*) If possible breed will be mapped to a standardised breed ontology, both supplied and mapped breed will be available to end users
+  * `Birth date` (*date*) Date when the animal was born
   * `Birth location` (*text*) name of the place where the animal was given birth
   * `Birth location longitude` (*number*) the longitude of the place where the animal was given birth in decimal degrees
   * `Birth location latitude` (*number*) the latitude of the place where the animal was given birth in decimal degrees
@@ -130,8 +131,6 @@ A piece of tissue taken from an animal. The following attributes are in addition
 Mandatory:
 
   * `Derived from` (*text*) The data source id or alternative id of the animal from which the sample was collected
-  * `Collection date` (*date*) Date when the sample was collected
-  * `Collection place` (*text*) name of the place where the sample was collected
   * `Collection place accuracy` (*limited value*)  Allowed values are:
     * missing geographic information
     * country level
@@ -144,13 +143,16 @@ Mandatory:
 Recommended:
 
   * `Specimen collection protocol` (*uri*) A URL link to the protocol used to collect this sample
+  * `Collection date` (*date*) Date when the sample was collected
   * `Collection place latitude` (*number*) latitude of the place where the sample was collected
   * `Collection place longitude` (*number*) longitude of the place where the sample was collected
+  * `Collection place` (*text*) name of the place where the sample was collected
   * `Developmental stage` (*ontology_id*) developmental stage of the animal from which the specimen is collected
   * `Physiological stage` (*ontology_id*) physiological stage of the animal from which the specimen is collected
-  * `Availability` (*limited value*) Either an e-mail address to contact about availability or a link to a web page giving information on who to contact. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal accounts. Allowed values are:
+  * `Availability` (*limited value*) Either a link to a web page giving information on who to contact or providing access of the data or an e-mail address to contact about availability. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal accounts. If neither available, please use the value no longer available Allowed values are:
     * no longer available
     * mailto:a.valid@email
+    * https://a.valid.weblink
 
   * `Sample storage` (*limited value*) How the sample was stored. Temperatures are in degree Celsius. 'Frozen, vapor phase' refers to storing samples above liquid nitrogen in the vapor Allowed values are:
     * ambient temperature

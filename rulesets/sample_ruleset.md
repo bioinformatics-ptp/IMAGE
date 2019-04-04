@@ -22,8 +22,8 @@ These attributes should be present on every sample record.
 Mandatory:
 
   * `Data source ID` (*text*) the id used in the original data source to identify the record
-  * `Alternative id` (*limited value*) the other identifier used in the orignal data source, e.g. accession, secondary id etc.
-  * `Project` (*text*) All samples are stated to be part of the IMAGE project, while still belonging to each individual gene bank. This tag is required to identify them in public databases Allowed values are:
+  * `Alternative id` (*text*) the other identifier used in the orignal data source, e.g. accession, secondary id etc.
+  * `Project` (*limited value*) All samples are stated to be part of the IMAGE project, while still belonging to each individual gene bank. This tag is required to identify them in public databases Allowed values are:
     * IMAGE
 
   * `Submission title` (*text*) A descriptive title for the submission
@@ -34,11 +34,28 @@ Mandatory:
   * `Person last name` (*text*) the last name of the submitter or contact for these samples, multiple persons can be provided
   * `Person email` (*uri*) email of contact person
   * `Person affiliation` (*text*) affiliation of person
-  * `Person role` (*text*) the role (type of the contribution) made by the person
+  * `Person role` (*ontology_id*) the role (type of the contribution) made by the person
   * `Organization name` (*text*) Organization name, multiple can be supplied, but at least one must be the name of the gene bank
   * `Organization role` (*ontology_id*) the role of the organization, e.g. biobank, funder
   * `Gene bank name` (*text*) The name of the gene bank that the data of this submission belongs to, ideally use the value stored in EUGENA
-  * `Gene bank country` (*limited value*) Country in which the gene bank resides, particularly important when different countries use the same database infrastructure, e.g. CryoWeb. The controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary
+  * `Gene bank country` (*ontology_id*) Country in which the gene bank resides, particularly important when different countries use the same database infrastructure, e.g. CryoWeb. The controlled vocabulary for countries is from INSDC http://www.insdc.org/documents/country-qualifier-vocabulary Allowed values are:
+    * [France](http://purl.obolibrary.org/obo/NCIT_C16592)
+    * [Egypt](http://purl.obolibrary.org/obo/NCIT_C16530)
+    * [Colombia](http://purl.obolibrary.org/obo/NCIT_C16449)
+    * [Switzerland](http://purl.obolibrary.org/obo/NCIT_C17181)
+    * [Netherlands](http://purl.obolibrary.org/obo/NCIT_C16903)
+    * [Germany](http://purl.obolibrary.org/obo/NCIT_C16636)
+    * [Italy](http://purl.obolibrary.org/obo/NCIT_C16761)
+    * [Hungary](http://purl.obolibrary.org/obo/NCIT_C16699)
+    * [Morocco](http://purl.obolibrary.org/obo/NCIT_C16878)
+    * [Spain](http://purl.obolibrary.org/obo/NCIT_C17152)
+    * [Argentina](http://purl.obolibrary.org/obo/NCIT_C16305)
+    * [Sweden](http://purl.obolibrary.org/obo/NCIT_C17180)
+    * [United Kingdom](http://purl.obolibrary.org/obo/NCIT_C17233)
+    * [Poland](http://purl.obolibrary.org/obo/NCIT_C17002)
+    * [Portugal](http://purl.obolibrary.org/obo/NCIT_C17006)
+    * [Austria](http://purl.obolibrary.org/obo/NCIT_C16312)
+
   * `Data source type` (*limited value*) the type of the data source the current Inject tool can handle Allowed values are:
     * CryoWeb
     * CRB-Anim
@@ -52,7 +69,7 @@ Recommended:
   * `Submission description` (*text*) A brief description of the submission
   * `Person first name` (*text*) the first name of the submitter or contact for these samples, multiple persons can be provided
   * `Organization address` (*text*) The address of the organisation, multiple can be supplied
-  * `Organization country` (*text*) Country in which organization resides, the organization list is maintained at https://github.com/cnr-ibba/IMAGE-InjectTool/blob/devel/django-data/image/image_app/management/commands/organization_list.csv Allowed values are:
+  * `Organization country` (*ontology_id*) Country in which organization resides, the organization list is maintained at https://github.com/cnr-ibba/IMAGE-InjectTool/blob/devel/django-data/image/image_app/management/commands/organization_list.csv Allowed values are:
     * [France](http://purl.obolibrary.org/obo/NCIT_C16592)
     * [Egypt](http://purl.obolibrary.org/obo/NCIT_C16530)
     * [Colombia](http://purl.obolibrary.org/obo/NCIT_C16449)
@@ -98,6 +115,7 @@ Mandatory:
 Recommended:
 
   * `Mapped breed` (*ontology_id*) If possible breed will be mapped to a standardised breed ontology, both supplied and mapped breed will be available to end users
+  * `Birth date` (*date*) Date when the animal was born
   * `Birth location` (*text*) name of the place where the animal was given birth
   * `Birth location longitude` (*number*) the longitude of the place where the animal was given birth in decimal degrees
   * `Birth location latitude` (*number*) the latitude of the place where the animal was given birth in decimal degrees
@@ -113,8 +131,6 @@ A piece of tissue taken from an animal. The following attributes are in addition
 Mandatory:
 
   * `Derived from` (*text*) The data source id or alternative id of the animal from which the sample was collected
-  * `Collection date` (*date*) Date when the sample was collected
-  * `Collection place` (*text*) name of the place where the sample was collected
   * `Collection place accuracy` (*limited value*)  Allowed values are:
     * missing geographic information
     * country level
@@ -127,15 +143,18 @@ Mandatory:
 Recommended:
 
   * `Specimen collection protocol` (*uri*) A URL link to the protocol used to collect this sample
+  * `Collection date` (*date*) Date when the sample was collected
   * `Collection place latitude` (*number*) latitude of the place where the sample was collected
   * `Collection place longitude` (*number*) longitude of the place where the sample was collected
+  * `Collection place` (*text*) name of the place where the sample was collected
   * `Developmental stage` (*ontology_id*) developmental stage of the animal from which the specimen is collected
   * `Physiological stage` (*ontology_id*) physiological stage of the animal from which the specimen is collected
-  * `Availability` (*text*) Either an e-mail address to contact about availability or a link to a web page giving information on who to contact. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal accounts. Allowed values are:
+  * `Availability` (*limited value*) Either a link to a web page giving information on who to contact or providing access of the data or an e-mail address to contact about availability. E-mail addresses should be prefixed with 'mailto:', e.g. 'mailto:samples@example.ac.uk'. In either case, long term support of the web page or e-mail address is necessary. Group e-mail addresses are preferable to indiviudal accounts. If neither available, please use the value no longer available Allowed values are:
     * no longer available
     * mailto:a.valid@email
+    * https://a.valid.weblink
 
-  * `Sample storage` (*text*) How the sample was stored. Temperatures are in degree Celsius. 'Frozen, vapor phase' refers to storing samples above liquid nitrogen in the vapor Allowed values are:
+  * `Sample storage` (*limited value*) How the sample was stored. Temperatures are in degree Celsius. 'Frozen, vapor phase' refers to storing samples above liquid nitrogen in the vapor Allowed values are:
     * ambient temperature
     * cut slide
     * frozen, -80 degrees Celsius freezer
@@ -148,7 +167,7 @@ Recommended:
     * paraffin block at ambient temperatures (+15 to +30 degrees Celsius)
     * freeze dried
 
-  * `Sample storage processing` (*text*) How the sample was prepared for storage Allowed values are:
+  * `Sample storage processing` (*limited value*) How the sample was prepared for storage Allowed values are:
     * cryopreservation in liquid nitrogen (dead tissue)
     * cryopreservation in dry ice (dead tissue)
     * cryopreservation of live cells in liquid nitrogen
